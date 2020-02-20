@@ -6,8 +6,8 @@ function init() {
 
     view.showComponents('loading')
 
-    firebase.auth().onAuthStateChanged(function(user, token) {
-        if (user && user.emailVerified || token) {
+    firebase.auth().onAuthStateChanged(function(user, result) {
+        if (user && user.emailVerified || result) {
             $('body').css('padding-right', '0px')
             view.showComponents('personal')
         } else {
