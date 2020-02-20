@@ -1,7 +1,7 @@
 const view = {
     currentScreen: null
 }
-view.showComponents = async function (screenName) {
+view.showComponents = async function(screenName) {
     view.currentScreen = screenName
 
     switch (screenName) {
@@ -28,27 +28,27 @@ view.showComponents = async function (screenName) {
                 // register account 
                 function registerFormSubmitHandler(e) {
                     e.preventDefault() // chan su kien form submit mac dinh
-                    // get data
+                        // get data
                     let registerInfo = {
-                        name: form.name.value.trim(),
-                        email: form.email.value.trim().toLowerCase(),
-                        password: form.password.value,
-                        confirmPassword: form.confirmPassword.value
-                    }
-                    // validate data
+                            name: form.name.value.trim(),
+                            email: form.email.value.trim().toLowerCase(),
+                            password: form.password.value,
+                            confirmPassword: form.confirmPassword.value
+                        }
+                        // validate data
                     let validateResult = [
-                        view.validate('username-error', [registerInfo.name, 'Misssing Name!']),
-                        view.validate('register-email-error', [registerInfo.email, 'Missing email!']),
-                        view.validate('register-password-error', [
-                            registerInfo.password, 'Missing password!',
-                            registerInfo.password.length >= 6, 'Password length must greater than or equals 6'
-                        ]),
-                        view.validate('confirm-password-error', [
-                            registerInfo.confirmPassword, 'Missing confirm password!',
-                            registerInfo.confirmPassword == registerInfo.password, 'Password and confirm password not match!'
-                        ])
-                    ]
-                    // submit data
+                            view.validate('username-error', [registerInfo.name, 'Misssing Name!']),
+                            view.validate('register-email-error', [registerInfo.email, 'Missing email!']),
+                            view.validate('register-password-error', [
+                                registerInfo.password, 'Missing password!',
+                                registerInfo.password.length >= 6, 'Password length must greater than or equals 6'
+                            ]),
+                            view.validate('confirm-password-error', [
+                                registerInfo.confirmPassword, 'Missing confirm password!',
+                                registerInfo.confirmPassword == registerInfo.password, 'Password and confirm password not match!'
+                            ])
+                        ]
+                        // submit data
                     if (view.allPassed(validateResult)) {
                         controller.register(registerInfo)
                     }
@@ -84,16 +84,17 @@ view.showComponents = async function (screenName) {
                 // sign in with google 
                 function googleSignInHandler() {
 
-                    firebase.auth().signInWithPopup(provider).then(function (result) {
+                    firebase.auth().signInWithPopup(provider).then(function(result) {
                         // This gives you a Google Access Token. You can use it to access the Google API.
                         var token = result.credential.accessToken;
                         console.log(token)
+                        console.log(result)
                         view.showComponents('personal')
 
                         var user = result.user;
                         console.log(user)
-                        // ...
-                    }).catch(function (error) {
+                            // ...
+                    }).catch(function(error) {
                         // Handle Errors here.
                         var errorCode = error.code;
                         var errorMessage = error.message;
@@ -197,26 +198,26 @@ view.showComponents = async function (screenName) {
 
                 function addMemberClickHandler(e) {
                     let addMemberInput = document.getElementById('add-member-input')
-                    
-                    if(addMemberInput.style.display == 'none'){
+
+                    if (addMemberInput.style.display == 'none') {
                         addMemberInput.style.display = 'block'
-                        addMemberInput.onkeydown = function(){
-                            if(event.key ===  'Enter'){
+                        addMemberInput.onkeydown = function() {
+                            if (event.key === 'Enter') {
                                 let userName = addMemberInput.value
-                                /**
-                                 * ktra xem tên tài khoản có tồn tại k
-                                 * thêm vào member
-                                 * gửi thông báo cho ng đk thêm
-                                 */
+                                    /**
+                                     * ktra xem tên tài khoản có tồn tại k
+                                     * thêm vào member
+                                     * gửi thông báo cho ng đk thêm
+                                     */
                             }
-                            
+
                         }
-                        
-                    } else{
+
+                    } else {
                         addMemberInput.style.display = 'none'
                     }
-                  
-                    
+
+
                 }
 
                 break;
@@ -229,15 +230,15 @@ view.showComponents = async function (screenName) {
 
                 navbarEvent();
 
-                $("#videoNext").click(function () {
+                $("#videoNext").click(function() {
                     $("#video-watch").attr("src", $(" #videoNext #idVideoNext").prop('src'))
                 });
 
 
                 let count = 0;
 
-                $(document).ready(function () {
-                    $("#presentVideo").click(function () {
+                $(document).ready(function() {
+                    $("#presentVideo").click(function() {
                         count++;
                         console.log(count)
                         $("#views").html(count + " views")
@@ -338,8 +339,7 @@ view.showComponents = async function (screenName) {
                         await controller.addClassroom(classroom)
                         controller.setupDatabaseClassroomChange()
                         view.showComponents('personal')
-                    }
-                    else {
+                    } else {
                         view.enable('form-add-class-btn')
                     }
                 }
@@ -381,22 +381,22 @@ view.showComponents = async function (screenName) {
 
                     // get data
                     let passwordInfo = {
-                        oldPassword: changeInfo.oldPassword.value,
-                        newPassword: changeInfo.newPassword.value,
-                        confirmPassword: changeInfo.confirmPassword.value
-                    }
-                    // validate data
+                            oldPassword: changeInfo.oldPassword.value,
+                            newPassword: changeInfo.newPassword.value,
+                            confirmPassword: changeInfo.confirmPassword.value
+                        }
+                        // validate data
                     let validateResult = [
-                        view.validate('new-password-error', [
-                            passwordInfo.newPassword, 'Missing password!',
-                            passwordInfo.newPassword.length >= 6, 'Password length must greater than or equals 6'
-                        ]),
-                        view.validate('confirm-password-error', [
-                            passwordInfo.confirmPassword, 'Missing confirm password!',
-                            passwordInfo.confirmPassword == passwordInfo.newPassword, 'Password and confirm password not match!'
-                        ])
-                    ]
-                    // submit data
+                            view.validate('new-password-error', [
+                                passwordInfo.newPassword, 'Missing password!',
+                                passwordInfo.newPassword.length >= 6, 'Password length must greater than or equals 6'
+                            ]),
+                            view.validate('confirm-password-error', [
+                                passwordInfo.confirmPassword, 'Missing confirm password!',
+                                passwordInfo.confirmPassword == passwordInfo.newPassword, 'Password and confirm password not match!'
+                            ])
+                        ]
+                        // submit data
                     if (view.allPassed(validateResult)) {
                         controller.changePassword(passwordInfo)
                     }
