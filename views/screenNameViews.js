@@ -119,8 +119,11 @@ view.showComponents = async function(screenName) {
                         var uid = user.uid
                         console.log(uid)
                         console.log(result)
+
                         await controller.facebookSignIn(uid)
+
                         $('body').css('padding-right', '0px')
+
                         await view.showComponents('personal')
                         console.log(result)
 
