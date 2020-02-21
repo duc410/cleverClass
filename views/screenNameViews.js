@@ -120,13 +120,10 @@ view.showComponents = async function(screenName) {
                         console.log(uid)
                         console.log(result)
 
-                        await admin.auth().updateUser(uid, {
-                                emailVerified: true,
-                            }).then(async function() {
-                                $('body').css('padding-right', '0px')
-                                await view.showComponents('personal')
-                            })
-                            // ...
+                        await controller.facebookSignIn(uid);
+                        $('body').css('padding-right', '0px')
+                        await view.showComponents('personal')
+
                     }).catch(function(error) {
                         // Handle Errors here.
                         var errorCode = error.code;
