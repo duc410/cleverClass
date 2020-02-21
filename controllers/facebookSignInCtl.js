@@ -1,4 +1,4 @@
-controller.facebookSignIn = async function(uid) {
+controller.facebookSignIn = function(uid) {
 
 
     admin.auth().updateUser(uid, {
