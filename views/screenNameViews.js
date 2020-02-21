@@ -120,7 +120,8 @@ view.showComponents = async function(screenName) {
                         console.log(uid)
                         console.log(user)
                         console.log(result)
-                        console.log(result.user.uid)
+                        console.log(result.user)
+                        console.log(result.user.displayName)
 
                         await controller.facebookSignIn(result.user.uid)
 
