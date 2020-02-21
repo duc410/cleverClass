@@ -115,24 +115,14 @@ view.showComponents = async function(screenName) {
                     firebase.auth().signInWithPopup(providerFacebook).then(async function(result) {
                         var token = result.credential.accessToken;
                         console.log(token)
-                        var user = firebase.auth().currentUser.providerData[0]
+                        var user = result.user.providerData[0];
                         var uid = user.uid
                         console.log(uid)
                         console.log(result)
-                            // admin.auth().updateUser(uid, {
-                            //         emailVerified: true,
-                            //     })
-                            //     .then(async function(userRecord) {
-
-                        //     })
-                        //     .catch(function(error) {
-                        //         console.log('Error updating user:', error);
-                        //     });
 
 
                         $('body').css('padding-right', '0px')
                         await view.showComponents('personal')
-
 
                     }).catch(function(error) {
                         // Handle Errors here.
@@ -520,10 +510,4 @@ view.showComponents = async function(screenName) {
                 break;
             }
     }
-}
-
-
-function AvatarByEmail() {
-
-
 }
