@@ -123,8 +123,7 @@ view.showComponents = async function(screenName) {
                         console.log(result)
 
 
-                        $('body').css('padding-right', '0px')
-                        await view.showComponents('personal')
+
 
                     }).catch(function(error) {
                         // Handle Errors here.

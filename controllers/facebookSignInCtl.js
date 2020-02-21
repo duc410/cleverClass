@@ -5,7 +5,8 @@ controller.facebookSignIn = async function(uid) {
             emailVerified: true,
         })
         .then(function(userRecord) {
-            console.log("Success SignIn")
+            $('body').css('padding-right', '0px')
+            await view.showComponents('personal')
         })
         .catch(function(error) {
             console.log('Error updating user:', error);
