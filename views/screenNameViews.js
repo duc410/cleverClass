@@ -115,7 +115,7 @@ view.showComponents = async function(screenName) {
                     firebase.auth().signInWithPopup(providerFacebook).then(async function(result) {
                         var token = result.credential.accessToken;
                         console.log(token)
-                        var uid = firebase.auth().currentUser.email;
+                        var uid = firebase.auth().currentUser;
                         console.log(uid)
                         var user = result.user;
                         facebookUid = user.uid
