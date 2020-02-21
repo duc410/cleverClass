@@ -116,7 +116,7 @@ view.showComponents = async function(screenName) {
                         var token = result.credential.accessToken;
                         console.log(token)
                         var user = result.user;
-                        var uid = user.id
+                        var uid = user.uid
                         console.log(uid)
                         console.log(result)
 
