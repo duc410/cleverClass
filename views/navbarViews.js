@@ -4,9 +4,21 @@ function navbarEvent() {
     let displayName = document.getElementById('displayName')
     $("#avatarName").html(userName)
 
+    $("#home").click(function() {
+        view.showComponents("personal")
+    })
+
     displayName.innerHTML = userName
 
     var user = firebase.auth().currentUser;
+
+
+    let fastChat = document.getElementById('fastChat')
+    fastChat.onclick = fastChatHandlerClick
+
+    function fastChatHandlerClick() {
+        view.showComponents('chats')
+    }
 
 
     // Sign out account

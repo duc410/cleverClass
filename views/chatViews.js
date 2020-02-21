@@ -62,3 +62,68 @@ function updateAvatar() {
 
     $("#myImage").attr("src", photo)
 }
+
+view.showListMember = function() {
+    let listConversation = document.getElementById('list-member')
+    listConversation.innerHTML = ""
+
+
+
+    // show array model.conversation
+    let conversations = model.currentConversation
+        // console.log(model.currentConversation.id)
+
+    let users = conversations.users;
+    console.log(conversations)
+
+    let userLength = conversations.users.length;
+    let member = userLength > 1 ? (userLength + 'members') : (userLength + 'member')
+    let html = users.map(user => `     
+          <div class="conversation-member-right">${user}</div>
+         `)
+    listConversation.innerHTML = html
+
+}
+
+
+view.showListConversation = function() {
+    view.showListMember()
+    let listConversation = document.getElementById('list-conversation')
+    listConversation.innerHTML = ""
+    if (model.conversations && model.conversations.length) {
+        // show array model.conversation
+        let conversations = model.conversations
+            //console.log(conversations)
+        for (let conversation of conversations) {
+
+            let { id: conversationId, title, users } = conversation
+            let user = users.length;
+
+
+            let member = user > 1 ? (user + 'members') : (user + 'member')
+
+            let className = (model.currentConversation && model.currentConversation.id == conversation.id) ?
+                'conversation current' : 'conversation'
+            let html = `
+           <div class="card shadow p-3 mb-3  ${className}">
+           <div id="${conversationId}"  id="listConversationToChange">
+           <div class="conversation-title ">${title}</div>
+           <div class="conversation-member ">${member}</div>
+       </div></div>
+          `
+            listConversation.innerHTML += html
+        }
+
+        for (let conversation of conversations) {
+            let conversationId = conversation.id
+            let conversationCard = document.getElementById(conversationId)
+            conversationCard.onclick = function() {
+                model.saveCurrentConversation(conversation)
+                view.showListConversation()
+                view.showCurrentConversation()
+
+            }
+        }
+
+    }
+}

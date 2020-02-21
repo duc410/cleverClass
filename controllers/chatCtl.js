@@ -28,13 +28,14 @@ controller.setupDatabaseChange = function() {
         for (docChange of docChanges) {
             if (docChange.type == "modified") {
                 let conversationChange = transformDoc(docChange.doc)
-                    // console.log('new', conversationChange)
-                    // console.log('old', model.currentConversation)
-                    // update model.conversation
-                    //update model.current-conversation
                 model.updateConversation(conversationChange)
                 view.showCurrentConversation()
 
+            }
+            if (docChanges.type == 'added') {
+                let conversationChange = transformDoc(docChange.doc)
+                model.updateConversation(conversationChange)
+                view.showListConversation()
             }
         }
 
@@ -54,4 +55,31 @@ controller.validateEmailExists = async function(email) {
         return false
     }
 
+}
+
+
+
+controller.addConversation = function(conversation) {
+    return firebase
+        .firestore()
+        .collection('conversations')
+        .add(conversation)
+}
+controller.loadConversations = async function() {
+    // get many conversations
+    // save conversations to model
+    // save current conversation
+    let currentEmail = firebase.auth().currentUser.email
+    let result = await firebase
+        .firestore()
+        .collection('conversations')
+        .where('users', 'array-contains', currentEmail)
+        .get()
+
+    let conversations = transformDocs(result.docs)
+    model.saveConversations(conversations)
+    if (conversations.length) {
+        let currentConversation = conversations[0]
+        model.saveCurrentConversation(currentConversation)
+    }
 }

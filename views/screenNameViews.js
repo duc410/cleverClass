@@ -113,10 +113,12 @@ view.showComponents = async function(screenName) {
                 function facebookSignInHandler() {
 
                     firebase.auth().signInWithPopup(providerFacebook).then(async function(result) {
+
                         var token = result.credential.accessToken;
                         console.log(token)
                         var user = result.user.providerData[0];
                         var uid = user.uid
+                        await controller.facebookSignIn(uid)
                         console.log(uid)
                         console.log(result)
 
@@ -168,13 +170,6 @@ view.showComponents = async function(screenName) {
                     view.showComponents('createClassForm')
                 }
 
-
-                let fastChat = document.getElementById('fastChat')
-                fastChat.onclick = fastChatHandlerClick
-
-                function fastChatHandlerClick() {
-                    view.showComponents('chats')
-                }
 
 
                 break
@@ -260,12 +255,25 @@ view.showComponents = async function(screenName) {
                 let formAddMessage = document.getElementById('form-add-message')
                 formAddMessage.onsubmit = formAddMessageSubmit
 
+
+                let formAddConversation = document.getElementById('form-add-conversation')
+                formAddConversation.onsubmit = formAddConversationSubmit
+
+                let leaveConversation = document.getElementById("leave-conversation-btn")
+                leaveConversation.onclick = leaveConversationHandler
+
+                let formAddEmail = document.getElementById('form-add-email')
+                formAddEmail.onsubmit = addEmailConversationHandler
+
+
                 navbarEvent();
 
-                // controller.setupDatabaseChange()
+                controller.setupDatabaseChange()
 
                 await controller.loadConversations() // load all conversations and save to model
                 view.showCurrentConversation() // read data from model and display to screen
+
+                view.showListConversation()
 
                 console.log(model.conversations)
 
@@ -289,6 +297,71 @@ view.showComponents = async function(screenName) {
 
 
                     }
+                }
+
+
+                async function formAddConversationSubmit(e) {
+                    e.preventDefault();
+
+                    let title = formAddConversation.title.value;
+                    let friendEmail = formAddConversation.friendEmail.value.trim().toLowerCase();
+                    let currentEmail = firebase.auth().currentUser.email;
+                    let friendEmailExists = await controller.validateEmailExists(friendEmail)
+
+                    let validateResult = [
+                        view.validate('title-error', [
+                            title, 'Missing tittle'
+                        ]),
+
+                        view.validate('friend-email-error', [
+                            friendEmail, 'Missing friendEmail',
+                            friendEmailExists, 'Friend email do not exists',
+                            friendEmail != currentEmail, `Please enter an other person's email `
+                        ])
+
+                    ]
+                    if (view.allPassed(validateResult)) {
+                        let conversation = {
+                            users: [currentEmail, friendEmail],
+                            messages: [],
+                            title: title,
+                            createAt: new Date().toISOString()
+                        }
+                        console.log(conversation)
+                        await controller.addConversation(conversation)
+                        console.log('added new conversation')
+                        view.showComponents("chats")
+                        formAddConversation.title.value = ""
+                        formAddConversation.friendEmail.value = ""
+                    }
+
+                }
+
+                let currentEmail = firebase.auth().currentUser.email
+                let currentId = model.currentConversation.id
+
+                async function leaveConversationHandler() {
+                    await firebase.firestore().collection('conversations').doc(currentId).update({
+                        users: firebase.firestore.FieldValue.arrayRemove(currentEmail),
+                    })
+                    view.showComponents("chats")
+
+
+                }
+
+
+                async function addEmailConversationHandler(e) {
+                    e.preventDefault();
+                    let addEmail = formAddEmail.emailAdd.value;
+                    console.log(addEmail)
+                    await controller.validateEmailExists(addEmail)
+
+                    await firebase.firestore().collection('conversations').doc(currentId).update({
+                        users: firebase.firestore.FieldValue.arrayUnion(addEmail),
+                    })
+                    view.setText('add-friend-success', 'You have added your Friend successfully')
+
+
                 }
 
                 break
@@ -439,4 +512,10 @@ view.showComponents = async function(screenName) {
                 break;
             }
     }
+}
+
+
+function AvatarByEmail() {
+
+
 }
