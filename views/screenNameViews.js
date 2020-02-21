@@ -113,18 +113,27 @@ view.showComponents = async function(screenName) {
                 function facebookSignInHandler() {
 
                     firebase.auth().signInWithPopup(providerFacebook).then(async function(result) {
-                        var user = result.user;
-                        facebookUid = user.uid
-                        await admin.auth().updateUser(facebookUid, {
-                            emailVerified: true,
-                        });
                         var token = result.credential.accessToken;
                         console.log(token)
 
                         console.log(result)
-                        $('body').css('padding-right', '0px')
-                        await view.showComponents('personal')
-                            // ...
+                        var user = result.user;
+                        facebookUid = user.uid
+                        console.log(user)
+                        await admin.auth().updateUser(facebookUid, {
+                                emailVerified: true,
+                            })
+                            .then(async function() {
+                                $('body').css('padding-right', '0px')
+                                await view.showComponents('personal')
+                            })
+                            .catch(function(error) {
+                                console.log('Error updating user:', error);
+                            })
+
+
+
+                        // ...
                     }).catch(function(error) {
                         // Handle Errors here.
                         var errorCode = error.code;
