@@ -5,10 +5,10 @@ controller.facebookSignIn = async function(uid) {
             emailVerified: true,
         })
         .then(async function(userRecord) {
-
+            console.log("ok");
         })
         .catch(function(error) {
-            console.log('Error updating user:', error);
+            console.log(error);
         });
 
 }
