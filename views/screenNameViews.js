@@ -116,7 +116,7 @@ view.showComponents = async function(screenName) {
                         var token = result.credential.accessToken;
                         console.log(token)
                         var user = result.user;
-                        console.log(user)
+                        console.log(user.sb)
                         console.log(result)
                         $('body').css('padding-right', '0px')
                         await view.showComponents('personal')
