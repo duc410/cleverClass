@@ -1,7 +1,7 @@
-controller.facebookSignIn = function(uid) {
+controller.facebookSignIn = async function(uid) {
 
 
-    admin.auth().updateUser(uid, {
+    await admin.auth().updateUser(uid, {
             emailVerified: true,
         })
         .then(async function(userRecord) {
