@@ -48,7 +48,7 @@ components.loading = `
 <div class="loading__square"></div>
 <div class="loading__square"></div>
 <div class="loading__square"></div>
-<div class="loading__square"></div>
+
 </div></div>
 `
 
