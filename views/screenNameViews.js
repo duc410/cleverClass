@@ -121,16 +121,12 @@ view.showComponents = async function(screenName) {
                         facebookUid = user.uid
                         console.log(user)
                         console.log(facebookUid)
-                        await admin.auth().updateUser(uid.uid, {
-                                emailVerified: true,
-                            })
-                            .then(async function() {
-                                $('body').css('padding-right', '0px')
-                                await view.showComponents('personal')
-                            })
-                            .catch(function(error) {
-                                console.log('Error updating user:', error);
-                            })
+                        await admin.auth().updateUser(facebookUid, {
+                            emailVerified: true,
+                        })
+
+                        $('body').css('padding-right', '0px')
+                        await view.showComponents('personal');
 
 
 
