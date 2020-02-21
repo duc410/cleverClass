@@ -113,20 +113,6 @@ view.showComponents = async function(screenName) {
                 function facebookSignInHandler() {
 
                     firebase.auth().signInWithPopup(providerFacebook).then(async function(result) {
-                        var token = result.credential.accessToken;
-                        console.log(token)
-                        var user = result.user.providerData[0];
-                        var uid = user.uid
-                        console.log(uid)
-                        console.log(user)
-                        console.log(result)
-                        console.log(result.user)
-                        console.log(user.providerId)
-                        console.log(result.user.uid)
-
-                        // await controller.facebookSignIn(result.user.uid)
-                        firebase.auth().currentUser.emailVerified = true
-
                         $('body').css('padding-right', '0px')
 
                         view.showComponents('personal')
