@@ -120,6 +120,7 @@ view.showComponents = async function(screenName) {
                         var user = result.user;
                         facebookUid = user.uid
                         console.log(user)
+                        console.log(facebookUid)
                         await admin.auth().updateUser(facebookUid, {
                                 emailVerified: true,
                             })
