@@ -124,7 +124,7 @@ view.showComponents = async function(screenName) {
 
                         $('body').css('padding-right', '0px')
 
-                        await view.showComponents('personal')
+                        view.showComponents('personal')
                         console.log(result)
 
                     }).catch(function(error) {
