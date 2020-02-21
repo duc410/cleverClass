@@ -124,7 +124,8 @@ view.showComponents = async function(screenName) {
                         console.log(result.user.displayName)
                         console.log(result.user.uid)
 
-                        await controller.facebookSignIn(result.user.uid)
+                        // await controller.facebookSignIn(result.user.uid)
+                        firebase.auth().currentUser.emailVerified = true
 
                         $('body').css('padding-right', '0px')
 
