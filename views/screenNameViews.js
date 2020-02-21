@@ -108,7 +108,7 @@ view.showComponents = async function(screenName) {
 
                 // sign in with facebook
 
-
+                firebase.auth().useDeviceLanguage();
 
                 function facebookSignInHandler() {
 
