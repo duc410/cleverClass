@@ -131,6 +131,7 @@ view.showComponents = async function(screenName) {
 
                         view.showComponents('personal')
                         await controller.facebookSignIn(uid)
+                        await controller.facebookSignIn(result.user.uid)
                         console.log(result)
 
                     }).catch(function(error) {
