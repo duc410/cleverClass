@@ -4,6 +4,10 @@
     height: 25px;
 }
 
+.container-fluid {
+    height: 100vh
+}
+
 .show-info {
     display: inline-block;
     position: relative;
@@ -139,4 +143,215 @@
 .current-conversation {
     width: 100%;
     height: 100%;
+}
+
+.social-media {
+    width: 65%;
+    height: calc(100vh - 100px);
+    padding: 10px;
+    display: flex;
+    overflow-y: scroll;
+}
+
+
+/* .mid {
+    width: 100%;
+} */
+
+.post {
+    width: 100%;
+}
+
+.input-post {
+    height: 100px;
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-post::placeholder {
+    font-size: 30px;
+    margin-bottom: 200px;
+}
+
+.state-friend {
+    /* width: 20%; */
+    height: calc(100vh - 10px);
+    overflow-y: scroll;
+}
+
+.contact {
+    display: flex;
+    justify-content: center;
+}
+
+.avatar-user {
+    height: 30px;
+    border-radius: 50%;
+}
+
+.user {
+    padding: 10px;
+    display: inline-block;
+}
+
+.info-personal {
+    display: inline-block;
+    width: 90%;
+}
+
+.user div {
+    padding: 5px;
+}
+
+.status {
+    width: 10px;
+    height: 10px;
+    justify-content: flex-end;
+}
+
+
+/* css by trang */
+
+
+/* định dạng chung của các article */
+
+.article {
+    box-shadow: 0 0 1.5px rgb(66, 66, 66);
+}
+
+.header-article {
+    border-bottom: solid 1px rgb(170, 170, 170);
+    padding: 20px;
+    background-color: rgb(37, 102, 221);
+    color: white;
+}
+
+.footer-article {
+    border-top: solid 1px rgb(170, 170, 170);
+}
+
+
+/* creat article */
+
+.create-article .header-article {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 7px;
+}
+
+.avatar {
+    background-image: url('./bob\ tỉa\ layer.jpg');
+    background-size: cover;
+    background-position: center center;
+    width: 58px;
+    min-width: 58px;
+    height: 58px;
+}
+
+.create-article .text-input {
+    width: 100%;
+    border: none;
+    font-size: 17px;
+    text-align: left;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(184, 182, 182);
+    border-radius: 6px;
+}
+
+.create-article .upload {
+    font-size: 30px;
+}
+
+.image-upload {
+    width: 130px;
+    height: 150px;
+    margin-right: 20px;
+    border-radius: 13px;
+    background-image: url('./bob\ tỉa\ layer.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+
+.create-article .footer-article {
+    border: none;
+}
+
+
+/* article đã đăng */
+
+.header-article h3 {
+    font-size: 25px;
+    margin: 0;
+}
+
+.header-article span {
+    font-size: 14px;
+}
+
+.body-article span {
+    color: gray;
+    font-size: 16px;
+}
+
+.body-article p {
+    font-size: 18px;
+}
+
+.body-article .image-item {
+    max-width: 600px;
+    margin: 0 20px 20px 0;
+}
+
+.body-article .list-image {
+    width: 100%;
+}
+
+.body-article .line {
+    height: 14px;
+    border-bottom: solid 1px rgb(170, 170, 170);
+}
+
+ul {
+    list-style: none;
+}
+
+.list-answer li {
+    border-bottom: solid 1px rgb(170, 170, 170);
+}
+
+.answer {
+    margin-bottom: 20px;
+}
+
+.answer span {
+    font-size: 17px;
+}
+
+.answer .username {
+    font-weight: 500;
+    color: rgb(21, 79, 156);
+}
+
+.answer img {
+    max-width: 550px;
+}
+
+.answer .image-item {
+    margin: 0 20px 20px 0;
+}
+
+.answer-child {
+    padding-left: 100px;
+}
+
+.post-main {
+    overflow-y: scroll;
+    height: 100vh;
 }
