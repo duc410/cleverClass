@@ -55,6 +55,8 @@ function navbarEvent() {
     }
     let photoURL = firebase.auth().currentUser.providerData[0].photoURL
 
+    if (!photoURL) photoURL = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1024px-User_icon_2.svg.png'
+
     $("#dropdownMenuButton").attr("src", photoURL)
     $("#avatar").attr("src", photoURL)
 

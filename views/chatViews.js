@@ -17,21 +17,26 @@ view.showCurrentConversation = function(id) {
             let createAt = message.createAt
             let currentEmail = firebase.auth().currentUser.email
             let className = ''
+            let photoURL = '';
             if (owner == currentEmail) {
                 className = 'message your'
+                photoURL = firebase.auth().currentUser.providerData[0].photoURL
             } else {
                 className = 'message other'
+                photoURL = controller.avatarChat(owner)
+
             } { /* <i class="fas fa-user-circle" id="iconUser"></i> */ }
 
 
-            if (displayName === currentUser) {
+            // if (displayName === currentUser) {
 
-            }
-            updateAvatar();
+            // }
+            // updateAvatar();
+            if (!photoURL) photoURL = 'https://cdn2.iconfinder.com/data/icons/user-icon-2-1/100/user_5-15-512.png'
 
             let html = `
     <div class="${className} show-message" >
-    <div class="show-info"><img  id="myImage" class="myImage" src="https://greenpathcr.com/wp-content/uploads/2019/09/user_circle_1048392.png">
+    <div class="show-info"><img id="myImage" class="myImage" src="${photoURL}">
     <div class="none"> <div >${owner}</div>
     <div >${createAt}</div></div></div>
        <span>${content}</span>     

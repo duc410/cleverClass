@@ -265,8 +265,9 @@ view.showComponents = async function(screenName) {
 
                 await controller.loadConversations() // load all conversations and save to model
                 view.showCurrentConversation() // read data from model and display to screen
-
                 view.showListConversation()
+
+
 
                 console.log(model.conversations)
 
@@ -323,7 +324,11 @@ view.showComponents = async function(screenName) {
                         console.log(conversation)
                         await controller.addConversation(conversation)
                         console.log('added new conversation')
-                        view.showComponents("chats")
+
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
+                        await view.showComponents("chats")
+
                         formAddConversation.title.value = ""
                         formAddConversation.friendEmail.value = ""
                     }
@@ -337,7 +342,8 @@ view.showComponents = async function(screenName) {
                     await firebase.firestore().collection('conversations').doc(currentId).update({
                         users: firebase.firestore.FieldValue.arrayRemove(currentEmail),
                     })
-                    view.showComponents("chats")
+                    location.reload();
+
 
 
                 }
@@ -345,14 +351,33 @@ view.showComponents = async function(screenName) {
 
                 async function addEmailConversationHandler(e) {
                     e.preventDefault();
-                    let addEmail = formAddEmail.emailAdd.value;
-                    console.log(addEmail)
-                    await controller.validateEmailExists(addEmail)
+                    let friendEmail = formAddEmail.emailAdd.value.trim().toLowerCase()
 
-                    await firebase.firestore().collection('conversations').doc(currentId).update({
-                        users: firebase.firestore.FieldValue.arrayUnion(addEmail),
-                    })
-                    view.setText('add-friend-success', 'You have added your Friend successfully')
+                    let friendEmailExists = await controller.validateEmailExists(friendEmail)
+                    let currentEmail = firebase.auth().currentUser.email;
+
+                    let validateResult = [
+                        view.validate('friend-email-error', [
+                            friendEmail, 'Missing friendEmail',
+                            friendEmailExists, 'Friend email do not exists',
+                            friendEmail != currentEmail, `Please enter an other person's email `
+                        ])
+
+
+                    ]
+
+                    if (view.allPassed(validateResult)) {
+
+                        await firebase.firestore().collection('conversations').doc(currentId).update({
+                            users: firebase.firestore.FieldValue.arrayUnion(friendEmail),
+                        })
+
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
+                        await view.showComponents("chats")
+                    }
+
+
 
 
                 }

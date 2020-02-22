@@ -55,6 +55,7 @@ components.chats = `
     <form id="form-add-email">
     <div class="form-group">
       <input type="text" name="emailAdd" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter a Friend Email">
+      <div id="friend-email-error" class="message-error"></div>
       <div id="add-friend-success" class="message-success"></div>
       </div>
     <button type="submit" class="btn btn-primary"  id="add-conversation-btn">ADD</button>

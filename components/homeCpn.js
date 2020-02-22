@@ -9,13 +9,13 @@ components.home = `<div>
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item login">
-                <a class="nav-link text-white" href="#" data-toggle="modal" data-target="#form-modal"
-                    onclick="showTap('sign in')">Đăng nhập</a>
+                <button class="btn btn-light mr-1" type="button"  data-toggle="modal" data-target="#form-modal"
+                    onclick="showTap('sign in')">Đăng nhập</button>
             </li>
 
             <li class="nav-item emphasize">
-                <a id="register-link" class="nav-link text-white" href="#" data-toggle="modal"
-                    data-target="#form-modal" onclick="showTap('sign up')">Đăng kí</a>
+                <button id="register-link" class=" btn btn-info" type="button" data-toggle="modal"
+                    data-target="#form-modal" onclick="showTap('sign up')">Đăng kí</button>
             </li>
         </ul>
     </nav>
@@ -23,7 +23,7 @@ components.home = `<div>
     <div class="introduce text-white ml-5">
         <h3 class="mt-5 font-weight-bold">Tạo lớp học chưa bao giờ dễ dàng đến thế</h3>
         Clever Class cho phép tạo, quản lý lớp học, tương tác với các thành viên trên nền tảng free
-        <button type="button" class="btn-start"  data-toggle="modal" data-target="#form-modal"
+        <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#form-modal"
         onclick="showTap('sign in')">Bắt đầu ngay</button>
     </div>
 </header>
@@ -64,7 +64,7 @@ components.home = `<div>
     <div class="get-start-content container">
         <h3>Tạo lớp ngay bây giờ</h3>
         <p>Đăng kí để trở thành thành viên của Clever Class ngay thôi nào!</p>
-        <button type="button" class="btn-start" data-toggle="modal" data-target="#form-modal"
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#form-modal"
         onclick="showTap('sign in')">Bắt đầu - Miễn phí</button>
     </div>
     <div class="row" style="margin-top: 100px;">
@@ -86,7 +86,7 @@ components.home = `<div>
     </div>
 </footer>
 </div>
-<div class="modal fade" id="form-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal" id="form-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div id="sign-in">
@@ -173,8 +173,8 @@ components.home = `<div>
                                         placeholder="Nhập lại mật khẩu">
                                 </div>
                                 <div id="confirm-password-error" class="message-error"></div>
-                                <div id="register-error" class="message-success"></div>
-                                <div id="register-success" class="message-error"></div>
+                                <div id="register-error" class="message-error"></div>
+                                <div id="register-success" class="message-success"></div>
 
                                 <button id="register-btn" type="submit" class="btn">Đăng kí</button>
                                 <div class="text-center" style="font-size: 13px; margin: 25px 0 10px 0;">Hoặc sử dụng</div>

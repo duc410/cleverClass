@@ -8,18 +8,24 @@ controller.register = async function(registerInfo) {
 
     try {
         await firebase.auth().createUserWithEmailAndPassword(email, password)
+        await firebase.auth().currentUser.sendEmailVerification()
+
+        await view.setText('register-success', 'An verification email has been sended to your email address!')
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+
         await firebase.auth().currentUser.updateProfile({
             displayName: displayName
         })
-        $('body').removeClass('modal-open');
-        $('.modal-backdrop').remove();
-        await firebase.auth().currentUser.sendEmailVerification()
-        view.setText('register-success', 'An verification email has been sended to your email address!')
+
     } catch (err) {
         view.setText('register-error', err.message)
     }
+    await view.showTap('sign up')
+
 
     view.enable('register-btn')
+
 }
 
 controller.logIn = async function(logInInfo) {
@@ -31,6 +37,7 @@ controller.logIn = async function(logInInfo) {
         if (!result.user || !result.user.emailVerified) {
             throw new Error('User must verify email!')
         }
+        $('body').css('padding-right', '0px')
         view.showComponents('personal')
     } catch (err) {
         view.setText('log-in-error', err.message)

@@ -6,6 +6,10 @@
     letter-spacing: 0.8px;
 }
 
+body:not(.modal-open) {
+    padding-right: 0px !important;
+}
+
 .header-wrapper {
     background-image: url('../images/home-page.jpg');
     background-size: cover;

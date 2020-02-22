@@ -83,3 +83,8 @@ controller.loadConversations = async function() {
         model.saveCurrentConversation(currentConversation)
     }
 }
+
+
+controller.avatarChat = async function(email) {
+
+}
