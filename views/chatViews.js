@@ -134,39 +134,42 @@ view.showListConversation = function() {
 
 
 
-view.showListStatus = function() {
-    var uid = firebase.auth().currentUser.uid;
+view.showListStatus = async function() {
+    let id = await controller.setupStatus();
+    let uid;
     let currentEmail = firebase.auth().currentUser.email
-
-    var userStatusFirestoreRef = firebase.firestore().doc('/status/' + uid);
 
     let listUserStatus = document.getElementById('list-user-status')
     listUserStatus.innerHTML = ""
     if (model.listUserStatus && model.listUserStatus.length) {
-        // show array model.conversation
-        let userStatus = model.listUserStatus
+        for (let user of userStatus) {
+            id.map(user => {
+                    uid = user.id
+                    console.log(uid)
+
+                    // show array model.conversation
+                    let userStatus = model.listUserStatus
+                    var userStatusFirestoreRef = firebase.firestore().doc('/status/' + uid);
+
+                    userStatusFirestoreRef.onSnapshot(function(doc) {
 
 
-        userStatusFirestoreRef.onSnapshot(function(doc) {
+                            var isOnline
 
-            for (let user of userStatus) {
-                var isOnline
-
-                isOnline = doc.data().state;
+                            isOnline = doc.data().state;
 
 
-                console.log(isOnline)
-                let srcStatus
+                            let srcStatus
 
-                let { id: userId, displayName, photoURL, email } = user
-                console.log(email)
+                            let { id: userId, displayName, photoURL, email } = user
+                            console.log(email)
 
-                if (currentEmail === email && isOnline === 'online') {
-                    srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
-                } else srcStatus = ""
+                            if (currentEmail === email && isOnline === 'online') {
+                                srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
+                            } else srcStatus = ""
 
 
-                let html = `       
+                            let html = `       
     <div class="personal">
     <div class="info-personal">
     <img class="avatar-user" src="${photoURL}" >
@@ -175,9 +178,10 @@ view.showListStatus = function() {
      <span><img class="status " id="user-status" src="${srcStatus}" ></span>
     </div>
           `
-                listUserStatus.innerHTML += html
-            }
-        });
+                            listUserStatus.innerHTML += html
+                        }
+                    });
+            })
         // for (let conversation of conversations) {
         //     let conversationId = conversation.id
         //     let conversationCard = document.getElementById(conversationId)

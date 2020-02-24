@@ -65,7 +65,8 @@ controller.setupStatus = async function() {
         .get()
 
     let statusUser = transformDocs(result.docs)
-    console.log(statusUser)
+
+    return statusUser
 
 }
 
