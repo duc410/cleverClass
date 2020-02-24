@@ -144,7 +144,6 @@ view.showListStatus = async function() {
         id.map(user => {
             uid = user.id
             var userStatusFirestoreRef = firebase.firestore().doc('/status/' + uid);
-
             userStatusFirestoreRef.onSnapshot(function(doc) {
 
                 var isOnline
