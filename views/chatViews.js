@@ -149,7 +149,7 @@ view.showListStatus = async function() {
 
                 var isOnline
                 let id = doc.id
-                console.log(id)
+
                 isOnline = doc.data().state;
 
                 let srcStatus
