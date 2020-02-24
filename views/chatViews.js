@@ -142,34 +142,29 @@ view.showListStatus = async function() {
     let listUserStatus = document.getElementById('list-user-status')
     listUserStatus.innerHTML = ""
     if (model.listUserStatus && model.listUserStatus.length) {
-        for (let user of userStatus) {
-            id.map(user => {
-                    uid = user.id
-                    console.log(uid)
+        id.map(user => {
+            uid = user.id
+            console.log(uid)
+            let userStatus = model.listUserStatus
+            var userStatusFirestoreRef = firebase.firestore().doc('/status/' + uid);
 
-                    // show array model.conversation
-                    let userStatus = model.listUserStatus
-                    var userStatusFirestoreRef = firebase.firestore().doc('/status/' + uid);
-
-                    userStatusFirestoreRef.onSnapshot(function(doc) {
+            userStatusFirestoreRef.onSnapshot(function(doc) {
 
 
-                            var isOnline
+                var isOnline
 
-                            isOnline = doc.data().state;
+                isOnline = doc.data().state;
 
+                let srcStatus
 
-                            let srcStatus
+                let { id: userId, displayName, photoURL, email } = user
 
-                            let { id: userId, displayName, photoURL, email } = user
-                            console.log(email)
-
-                            if (currentEmail === email && isOnline === 'online') {
-                                srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
-                            } else srcStatus = ""
+                if (currentEmail === email && isOnline === 'online') {
+                    srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
+                } else srcStatus = ""
 
 
-                            let html = `       
+                let html = `       
     <div class="personal">
     <div class="info-personal">
     <img class="avatar-user" src="${photoURL}" >
@@ -178,20 +173,11 @@ view.showListStatus = async function() {
      <span><img class="status " id="user-status" src="${srcStatus}" ></span>
     </div>
           `
-                            listUserStatus.innerHTML += html
-                        }
-                    });
-            })
-        // for (let conversation of conversations) {
-        //     let conversationId = conversation.id
-        //     let conversationCard = document.getElementById(conversationId)
-        //     conversationCard.onclick = function() {
-        //         model.saveCurrentConversation(conversation)
-        //         view.showListConversation()
-        //         view.showCurrentConversation()
+                listUserStatus.innerHTML += html
 
-        //     }
-        // }
+            });
+        })
+
 
     }
 
