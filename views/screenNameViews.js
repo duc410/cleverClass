@@ -261,15 +261,18 @@ view.showComponents = async function(screenName) {
 
                 navbarEvent();
 
-                controller.setupDatabaseChange()
+                controller.setupDatabaseChange();
+                await controller.loadListUserStatus();
 
                 await controller.loadConversations() // load all conversations and save to model
                 view.showCurrentConversation() // read data from model and display to screen
                 view.showListConversation()
+                view.showListStatus()
 
 
 
                 console.log(model.conversations)
+                console.log(model.listUserStatus)
 
                 async function formAddMessageSubmit(e) {
                     e.preventDefault()

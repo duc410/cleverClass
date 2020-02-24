@@ -4,9 +4,10 @@
     height: 25px;
 }
 
-.container-fluid {
+
+/* .container-fluid {
     height: 100vh
-}
+} */
 
 .show-info {
     display: inline-block;
@@ -45,7 +46,7 @@
 
 .message span {
     display: inline-block;
-    max-width: 50%;
+    max-width: 65%;
     padding: 8px;
     border: 1px solid #4481fe;
     border-radius: 5px;
@@ -55,15 +56,14 @@
 
 .list-message {
     padding: 10px;
-    height: calc(100% - 57px);
+    height: calc(100% - 75px);
     overflow-y: scroll;
     width: 100%;
 }
 
 .chat-container {
     width: 30%;
-    padding: 10px;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 95px);
     display: flex;
 }
 
@@ -104,15 +104,26 @@
     overflow-y: scroll;
 }
 
+.conversation-icon-group {
+    padding-right: 10px;
+}
+
 .conversation-title {
-    font-weight: 700;
+    font-weight: 200;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    height: 30px;
+    margin-left: 15px;
 }
 
-.conversation:hover {
+.conversation :hover {
+    background-color: gainsboro;
     cursor: pointer;
+}
+
+.conversation {
+    width: 100%;
 }
 
 .conversation.current {
@@ -132,9 +143,10 @@
     display: block;
 }
 
-.list-conversation>* {
-    margin-bottom: 10px;
-}
+
+/* .list-conversation {
+    margin-left: 10px;
+} */
 
 .form-add-conversation>* {
     margin-bottom: 10px;
@@ -146,20 +158,74 @@
 }
 
 .social-media {
-    width: 65%;
+    width: 100%;
     height: calc(100vh - 100px);
     padding: 10px;
     display: flex;
+}
+
+.card-info {
+    background-color: #ffffff ! important;
+    height: 330px;
+}
+
+.card-conversation {
+    margin-top: 20px;
+    background-color: #7d97a5;
+}
+
+.card-interested {
+    margin-top: 15px;
+}
+
+.interested {
+    border: 1px solid;
+    padding-right: 4px;
+    background-color: #435761;
+    color: white;
+    font-size: 13px;
+}
+
+.my-profile {
+    font-family: "Open Sans", sans-serif;
+}
+
+.information-user {
+    color: rgb(136, 132, 132);
+}
+
+.card-img-top {
+    border-radius: 50%;
+    height: 106px;
+    width: 106px;
+}
+
+.card-img-top-post-view {
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+    padding: 10px;
+}
+
+.avatar-social {
+    display: flex;
+    justify-content: center;
+}
+
+.time-post {
+    justify-content: flex-end
+}
+
+.card-social-post {
+    height: calc(100% + 17px);
+    width: 100%;
+    margin-left: 15px;
     overflow-y: scroll;
 }
 
-
-/* .mid {
+.post-view {
     width: 100%;
-} */
-
-.post {
-    width: 100%;
+    margin-bottom: 20px;
 }
 
 .input-post {
@@ -169,14 +235,30 @@
     justify-content: space-between;
 }
 
+.post-btn {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.fa-images {
+    font-size: 30px;
+    padding: 5px;
+    color: rgb(125, 180, 15)
+}
+
+.upload-image {
+    display: flex;
+}
+
 .input-post::placeholder {
     font-size: 30px;
     margin-bottom: 200px;
 }
 
 .state-friend {
-    /* width: 20%; */
-    height: calc(100vh - 10px);
+    width: 20%;
+    height: calc(100vh - 100px);
     overflow-y: scroll;
 }
 
@@ -188,6 +270,19 @@
 .avatar-user {
     height: 30px;
     border-radius: 50%;
+}
+
+.user-name {
+    font-size: 14px;
+    font-family: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.personal:hover {
+    background-color: rgb(236, 232, 232);
+    border-radius: 10px;
 }
 
 .user {
@@ -208,150 +303,4 @@
     width: 10px;
     height: 10px;
     justify-content: flex-end;
-}
-
-
-/* css by trang */
-
-
-/* định dạng chung của các article */
-
-.article {
-    box-shadow: 0 0 1.5px rgb(66, 66, 66);
-}
-
-.header-article {
-    border-bottom: solid 1px rgb(170, 170, 170);
-    padding: 20px;
-    background-color: rgb(37, 102, 221);
-    color: white;
-}
-
-.footer-article {
-    border-top: solid 1px rgb(170, 170, 170);
-}
-
-
-/* creat article */
-
-.create-article .header-article {
-    font-size: 16px;
-    font-weight: 500;
-    padding: 7px;
-}
-
-.avatar {
-    background-image: url('./bob\ tỉa\ layer.jpg');
-    background-size: cover;
-    background-position: center center;
-    width: 58px;
-    min-width: 58px;
-    height: 58px;
-}
-
-.create-article .text-input {
-    width: 100%;
-    border: none;
-    font-size: 17px;
-    text-align: left;
-}
-
-::-webkit-scrollbar {
-    width: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgb(184, 182, 182);
-    border-radius: 6px;
-}
-
-.create-article .upload {
-    font-size: 30px;
-}
-
-.image-upload {
-    width: 130px;
-    height: 150px;
-    margin-right: 20px;
-    border-radius: 13px;
-    background-image: url('./bob\ tỉa\ layer.jpg');
-    background-size: cover;
-    background-position: center center;
-}
-
-.create-article .footer-article {
-    border: none;
-}
-
-
-/* article đã đăng */
-
-.header-article h3 {
-    font-size: 25px;
-    margin: 0;
-}
-
-.header-article span {
-    font-size: 14px;
-}
-
-.body-article span {
-    color: gray;
-    font-size: 16px;
-}
-
-.body-article p {
-    font-size: 18px;
-}
-
-.body-article .image-item {
-    max-width: 600px;
-    margin: 0 20px 20px 0;
-}
-
-.body-article .list-image {
-    width: 100%;
-}
-
-.body-article .line {
-    height: 14px;
-    border-bottom: solid 1px rgb(170, 170, 170);
-}
-
-ul {
-    list-style: none;
-}
-
-.list-answer li {
-    border-bottom: solid 1px rgb(170, 170, 170);
-}
-
-.answer {
-    margin-bottom: 20px;
-}
-
-.answer span {
-    font-size: 17px;
-}
-
-.answer .username {
-    font-weight: 500;
-    color: rgb(21, 79, 156);
-}
-
-.answer img {
-    max-width: 550px;
-}
-
-.answer .image-item {
-    margin: 0 20px 20px 0;
-}
-
-.answer-child {
-    padding-left: 100px;
-}
-
-.post-main {
-    overflow-y: scroll;
-    height: 100vh;
 }

@@ -22,9 +22,12 @@ function navbarEvent() {
 
 
     // Sign out account
-    $("#log-out").click(function() {
+    $("#log-out").click(async function() {
+
         firebase.auth().signOut()
+
     })
+
 
     $("#account-setting").click(function() {
             view.showComponents('account')

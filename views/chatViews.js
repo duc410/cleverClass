@@ -110,10 +110,9 @@ view.showListConversation = function() {
             let className = (model.currentConversation && model.currentConversation.id == conversation.id) ?
                 'conversation current' : 'conversation'
             let html = `
-           <div class="card shadow p-3 mb-3  ${className}">
+           <div class="${className} mt-2">
            <div id="${conversationId}"  id="listConversationToChange">
-           <div class="conversation-title ">${title}</div>
-           <div class="conversation-member ">${member}</div>
+           <div class="conversation-title"><i class="fas fa-users conversation-icon-group"></i> ${title}</div>
        </div></div>
           `
             listConversation.innerHTML += html
@@ -131,4 +130,65 @@ view.showListConversation = function() {
         }
 
     }
+}
+
+
+
+view.showListStatus = function() {
+    var uid = firebase.auth().currentUser.uid;
+    let currentEmail = firebase.auth().currentUser.email
+
+    var userStatusFirestoreRef = firebase.firestore().doc('/status/' + uid);
+
+    let listUserStatus = document.getElementById('list-user-status')
+    listUserStatus.innerHTML = ""
+    if (model.listUserStatus && model.listUserStatus.length) {
+        // show array model.conversation
+        let userStatus = model.listUserStatus
+
+
+        userStatusFirestoreRef.onSnapshot(function(doc) {
+
+            for (let user of userStatus) {
+                var isOnline
+
+                isOnline = doc.data().state;
+
+
+                console.log(isOnline)
+                let srcStatus
+
+                let { id: userId, displayName, photoURL, email } = user
+                console.log(email)
+
+                if (currentEmail === email && isOnline === 'online') {
+                    srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
+                } else srcStatus = ""
+
+
+                let html = `       
+    <div class="personal">
+    <div class="info-personal">
+    <img class="avatar-user" src="${photoURL}" >
+     <span class="user-name">${displayName}</span>
+    </div>
+     <span><img class="status " id="user-status" src="${srcStatus}" ></span>
+    </div>
+          `
+                listUserStatus.innerHTML += html
+            }
+        });
+        // for (let conversation of conversations) {
+        //     let conversationId = conversation.id
+        //     let conversationCard = document.getElementById(conversationId)
+        //     conversationCard.onclick = function() {
+        //         model.saveCurrentConversation(conversation)
+        //         view.showListConversation()
+        //         view.showCurrentConversation()
+
+        //     }
+        // }
+
+    }
+
 }

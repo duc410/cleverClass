@@ -47,6 +47,29 @@ controller.updateNewMessage = function(conversationId, message) {
         messages: firebase.firestore.FieldValue.arrayUnion(message)
     })
 }
+controller.loadListUserStatus = async function() {
+    let result = await firebase
+        .firestore()
+        .collection('users')
+        .get()
+
+    let listUserStatus = transformDocs(result.docs)
+    model.saveListUserStatus(listUserStatus)
+
+}
+controller.setupStatus = async function() {
+    let currentEmail = firebase.auth().currentUser.email
+    let result = await firebase
+        .firestore()
+        .collection('users')
+        .get()
+
+    let statusUser = transformDocs(result.docs)
+    console.log(statusUser)
+
+}
+
+
 controller.validateEmailExists = async function(email) {
     try {
         let signInMethod = await firebase.auth().fetchSignInMethodsForEmail(email)
@@ -65,26 +88,6 @@ controller.addConversation = function(conversation) {
         .collection('conversations')
         .add(conversation)
 }
-controller.loadConversations = async function() {
-    // get many conversations
-    // save conversations to model
-    // save current conversation
-    let currentEmail = firebase.auth().currentUser.email
-    let result = await firebase
-        .firestore()
-        .collection('conversations')
-        .where('users', 'array-contains', currentEmail)
-        .get()
-
-    let conversations = transformDocs(result.docs)
-    model.saveConversations(conversations)
-    if (conversations.length) {
-        let currentConversation = conversations[0]
-        model.saveCurrentConversation(currentConversation)
-    }
-}
-
-
 controller.avatarChat = async function(email) {
 
 }
