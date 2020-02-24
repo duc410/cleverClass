@@ -140,10 +140,11 @@ view.showListStatus = async function() {
 
     let uid;
     let currentEmail = firebase.auth().currentUser.email
-    loadStatus();
+
     let listUserStatus = document.getElementById('list-user-status')
     listUserStatus.innerHTML = ""
     if (model.listUserStatus && model.listUserStatus.length) {
+        loadStatus();
         id.map(user => {
 
             let { id: userId, displayName, photoURL, email } = user
