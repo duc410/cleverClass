@@ -135,47 +135,54 @@ view.showListConversation = function() {
 
 
 view.showListStatus = async function() {
+
     let id = await controller.setupStatus();
+
     let uid;
     let currentEmail = firebase.auth().currentUser.email
+    loadStatus();
     let listUserStatus = document.getElementById('list-user-status')
     listUserStatus.innerHTML = ""
     if (model.listUserStatus && model.listUserStatus.length) {
         id.map(user => {
-            uid = user.id
-            var userStatusFirestoreRef = firebase.firestore().doc('/status/' + uid);
-            userStatusFirestoreRef.onSnapshot(function(doc) {
 
-                var isOnline
-                let id = doc.id
+            let { id: userId, displayName, photoURL, email } = user
+            console.log(userId)
 
-                isOnline = doc.data().state;
-
-                let srcStatus
-
-                let { id: userId, displayName, photoURL, email } = user
-                console.log(userId)
-
-                let html = `       
+            let html = `       
     <div class="personal">
     <div class="info-personal">
     <img class="avatar-user" src="${photoURL}" >
      <span class="user-name">${displayName}</span>
     </div>
-     <span><img class="status " id="user-status" " ></span>
+     <span><img class="status " id="user-status" src="" ></span>
     </div>
           `
-                listUserStatus.innerHTML += html
+            listUserStatus.innerHTML += html
+
+
+        });
+    }
+
+    function loadStatus() {
+        id.map(user => {
+            uid = user.id
+            var userStatusFirestoreRef = firebase.firestore().doc('/status/' + uid);
+            userStatusFirestoreRef.onSnapshot(function(doc) {
+                var isOnline
+                let id = doc.id
+                let { id: userId, email } = user
+                isOnline = doc.data().state;
                 if (currentEmail === email && isOnline === 'online' && id === userId) {
                     srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
                     $("#user-status").attr("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png")
 
-                } else srcStatus = ""
+                }
 
-            });
+            })
         })
-
-
     }
+
+
 
 }
