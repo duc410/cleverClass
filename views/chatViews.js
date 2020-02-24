@@ -152,14 +152,15 @@ view.showListStatus = async function() {
 
 
                 var isOnline
-
+                let id = doc.id
                 isOnline = doc.data().state;
 
                 let srcStatus
 
                 let { id: userId, displayName, photoURL, email } = user
+                console.log(userId)
 
-                if (currentEmail === email && isOnline === 'online') {
+                if (currentEmail === email && isOnline === 'online' && id === userId) {
                     srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
                 } else srcStatus = ""
 
