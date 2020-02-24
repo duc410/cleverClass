@@ -138,21 +138,18 @@ view.showListStatus = async function() {
     let id = await controller.setupStatus();
     let uid;
     let currentEmail = firebase.auth().currentUser.email
-
     let listUserStatus = document.getElementById('list-user-status')
     listUserStatus.innerHTML = ""
     if (model.listUserStatus && model.listUserStatus.length) {
         id.map(user => {
             uid = user.id
-            console.log(uid)
-            let userStatus = model.listUserStatus
             var userStatusFirestoreRef = firebase.firestore().doc('/status/' + uid);
 
             userStatusFirestoreRef.onSnapshot(function(doc) {
 
-
                 var isOnline
                 let id = doc.id
+                console.log(id)
                 isOnline = doc.data().state;
 
                 let srcStatus
@@ -162,6 +159,7 @@ view.showListStatus = async function() {
 
                 if (currentEmail === email && isOnline === 'online' && id === userId) {
                     srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
+
                 } else srcStatus = ""
 
 
