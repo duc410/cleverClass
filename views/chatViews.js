@@ -144,7 +144,7 @@ view.showListStatus = async function() {
         id.map(user => {
             uid = user.id
             var userStatusFirestoreRef = firebase.firestore().doc('/status/' + uid);
-            userStatusFirestoreRef.onSnapshot(function(doc) {
+            userStatusFirestoreRef.onSnapshot(async function(doc) {
 
                 var isOnline
                 let id = doc.id
@@ -156,9 +156,9 @@ view.showListStatus = async function() {
                 let { id: userId, displayName, photoURL, email } = user
                 console.log(userId)
 
-                if (currentEmail === email && isOnline === 'online' && id === userId) {
-                    srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
-                    $("#user-status").attr("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png")
+                if (isOnline === 'online' && id === userId) {
+                    // srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
+                    await $("#user-status").attr("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png")
 
                 } else srcStatus = ""
 
@@ -169,7 +169,7 @@ view.showListStatus = async function() {
     <img class="avatar-user" src="${photoURL}" >
      <span class="user-name">${displayName}</span>
     </div>
-     <span><img class="status " id="user-status" src="${srcStatus}" ></span>
+     <span><img class="status " id="user-status" ></span>
     </div>
           `
                 listUserStatus.innerHTML += html
