@@ -156,23 +156,21 @@ view.showListStatus = async function() {
                 let { id: userId, displayName, photoURL, email } = user
                 console.log(userId)
 
-                if (currentEmail === email && isOnline === 'online' && id === userId) {
-                    srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
-                    $("#user-status").attr("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png")
-
-                } else srcStatus = ""
-
-
                 let html = `       
     <div class="personal">
     <div class="info-personal">
     <img class="avatar-user" src="${photoURL}" >
      <span class="user-name">${displayName}</span>
     </div>
-     <span><img class="status " id="user-status" src="${srcStatus}" ></span>
+     <span><img class="status " id="user-status" " ></span>
     </div>
           `
                 listUserStatus.innerHTML += html
+                if (currentEmail === email && isOnline === 'online' && id === userId) {
+                    srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
+                    $("#user-status").attr("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png")
+
+                } else srcStatus = ""
 
             });
         })
