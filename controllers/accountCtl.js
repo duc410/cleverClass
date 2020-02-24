@@ -41,18 +41,17 @@ controller.changePassword = async function(passwordInfo) {
 }
 
 controller.changeInfo = async function(info) {
+
     let newName = info.newName;
-    let newEmail = info.newEmail;
     view.disable('save-btn')
     await firebase.auth().currentUser.updateProfile({
         displayName: newName,
-        email: newEmail
     })
-    view.showComponents("account")
-
 
     view.enable('save-btn')
 }
+
+
 
 controller.deleteAccount = async function(credential) {
 

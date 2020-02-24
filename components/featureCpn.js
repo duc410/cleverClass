@@ -34,13 +34,13 @@ components.chats = `
     <div class="card shadow card-info" style="width: 18rem;">
     <h5 class="card-title text-center">My Profile</h5>
     <div class="avatar-social">
-    <img class="card-img-top" src="https://firebasestorage.googleapis.com/v0/b/mindx-c72f4.appspot.com/o/photoURL%2FLongBody.jpg?alt=media&token=eb656c69-5139-407d-8c3a-3851e6d6c63f" alt="Card image cap">
+    <img class="card-img-top" id="photoURL" src="" alt="Card image cap">
     </div> 
     <div class="card-body"> 
       <hr/>
-      <p class="information-user"><i class="fas fa-user-edit"></i> LongBody</p>
-      <p class="information-user"><i class="fas fa-home"></i> Ha Noi,VN</p>
-      <p class="information-user"><i class="fas fa-birthday-cake"></i> November 30,2000</p>
+      <p class="information-user"><i class="fas fa-user-edit information-user"></i><span class="card-show-info-user" id="name"></span></p>
+      <p class="information-user"><i class="fas fa-home"></i> <span class="card-show-info-user" id="address"></span></p>
+      <p class="information-user"><i class="fas fa-birthday-cake"></i><span class="card-show-info-user" id="birthday"></span></p>
     </div>
      </div>
 

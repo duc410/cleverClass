@@ -55,7 +55,7 @@ async function checkStatusUser() {
     let id = await controller.setupStatus();
     let uid;
     console.log(id)
-    console.log(id[1].email)
+
     id.map(user => {
         if (user.email === currentEmail) {
             uid = user.id

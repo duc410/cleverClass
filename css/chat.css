@@ -120,6 +120,7 @@
 .conversation :hover {
     background-color: gainsboro;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 .conversation {
@@ -128,6 +129,7 @@
 
 .conversation.current {
     background-color: gainsboro;
+    border-radius: 10px;
 }
 
 .conversation-member {
@@ -171,7 +173,6 @@
 
 .card-conversation {
     margin-top: 20px;
-    background-color: #7d97a5;
 }
 
 .card-interested {
@@ -180,9 +181,8 @@
 
 .interested {
     border: 1px solid;
-    padding-right: 4px;
-    background-color: #435761;
-    color: white;
+    padding: 5px;
+    background-color: gainsboro;
     font-size: 13px;
 }
 
@@ -192,6 +192,11 @@
 
 .information-user {
     color: rgb(136, 132, 132);
+}
+
+.information-user>.fas {
+    width: 20px;
+    height: 15px;
 }
 
 .card-img-top {
@@ -214,6 +219,10 @@
 
 .time-post {
     justify-content: flex-end
+}
+
+.card-show-info-user {
+    padding-left: 5px;
 }
 
 .card-social-post {

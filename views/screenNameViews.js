@@ -261,8 +261,15 @@ view.showComponents = async function(screenName) {
 
                 navbarEvent();
 
+
+
                 controller.setupDatabaseChange();
                 await controller.loadListUserStatus();
+
+                await getDataCurrentUserInnnerHtml();
+
+                await controller.setupData();
+
 
                 await controller.loadConversations() // load all conversations and save to model
                 view.showCurrentConversation() // read data from model and display to screen
@@ -456,9 +463,12 @@ view.showComponents = async function(screenName) {
 
                 // set data for displayName and email of account setting
                 $("#name").val(userName)
-                $("#email").val(currentEmail)
+                await controller.loadListUserStatus();
+                let id = model.currentUserId
 
-
+                await getDataCurrentUser()
+                // let data = await controller.setupStatus();
+                // console.log(data)
 
                 let deleteForEmail = document.getElementById("delete-for-email")
                 deleteForEmail.innerHTML = `Email :` + currentEmail
@@ -514,16 +524,26 @@ view.showComponents = async function(screenName) {
                     view.enable('delete-account-btn')
                 }
 
-                function formChangeNameOrEmailHandler(e) {
+                async function formChangeNameOrEmailHandler(e) {
                     e.preventDefault();
                     let info = {
                         newName: formChangeNameOrEmail.newName.value,
+                        newBirthday: formChangeNameOrEmail.newBirthday.value,
+                        newAddress: formChangeNameOrEmail.newAddress.value,
                     }
                     let validateResult = [
                         view.validate('new-name-error', [info.newName, 'Missing the name!']),
+                        view.validate('new-birthday-error', [info.newBirthday, 'Missing the name!']),
+                        view.validate('new-address-error', [info.newAddress, 'Missing the name!']),
                     ]
                     if (view.allPassed(validateResult)) {
-                        controller.changeInfo(info)
+                        await controller.changeInfo(info)
+                        await firebase.firestore().collection('users').doc(id).update({
+                            displayName: info.newName,
+                            birthday: info.newBirthday,
+                            address: info.newAddress
+
+                        })
                     }
 
                 }

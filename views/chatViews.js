@@ -1,7 +1,10 @@
 view.showCurrentConversation = function(id) {
-    if (model.currentConversation) {
+    if (model.currentConversation && model.listUserStatus) {
         let messages = model.currentConversation.messages
+        let userArray = model.currentConversation.users
+        infoUsers = model.listUserStatus
 
+        let currentEmail = firebase.auth().currentUser.email
 
 
         let listMessage = document.getElementById('list-message')
@@ -10,39 +13,51 @@ view.showCurrentConversation = function(id) {
         for (let message of messages) {
 
 
+            let photo;
+            let name;
+            let html
+
+
             let currentUser = firebase.auth().currentUser
 
             let content = message.content
             let owner = message.owner
-            let createAt = message.createAt
-            let currentEmail = firebase.auth().currentUser.email
+
             let className = ''
-            let photoURL = '';
             if (owner == currentEmail) {
                 className = 'message your'
-                photoURL = firebase.auth().currentUser.providerData[0].photoURL
+
             } else {
                 className = 'message other'
-                photoURL = controller.avatarChat(owner)
-
-            } { /* <i class="fas fa-user-circle" id="iconUser"></i> */ }
 
 
-            // if (displayName === currentUser) {
+            }
+            for (let infoUser of infoUsers) {
 
-            // }
-            // updateAvatar();
-            if (!photoURL) photoURL = 'https://cdn2.iconfinder.com/data/icons/user-icon-2-1/100/user_5-15-512.png'
+                let { displayName, photoURL, email } = infoUser;
+                console.log(photo)
 
-            let html = `
+                userArray.map(user => {
+                    if (owner === email) {
+                        photo = photoURL
+                        name = displayName
+                    }
+
+                })
+                if (!photo) photo = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1024px-User_icon_2.svg.png'
+
+                html = `
     <div class="${className} show-message" >
-    <div class="show-info"><img id="myImage" class="myImage" src="${photoURL}">
-    <div class="none"> <div >${owner}</div>
-    <div >${createAt}</div></div></div>
+    <div class="show-info"><img id="myImage" class="myImage" src="${photo}">
+    <div class="none"> <div >${name}</div>
+    </div></div>
        <span>${content}</span>     
      </div>
   `
+            }
             listMessage.innerHTML += html
+
+
         }
 
 
@@ -137,19 +152,22 @@ view.showListConversation = function() {
 view.showListStatus = async function() {
     let id = await controller.setupStatus();
     let uid;
+    let html;
     let currentEmail = firebase.auth().currentUser.email
     let listUserStatus = document.getElementById('list-user-status')
     listUserStatus.innerHTML = ""
     if (model.listUserStatus && model.listUserStatus.length) {
         id.map(user => {
+
             uid = user.id
             var userStatusFirestoreRef = firebase.firestore().doc('/status/' + uid);
-            userStatusFirestoreRef.onSnapshot(function(doc) {
+            userStatusFirestoreRef.onSnapshot(async function(doc) {
 
                 var isOnline
                 let id = doc.id
 
-                isOnline = doc.data().state;
+                isOnline = await doc.data().state;
+                console.log(isOnline)
 
                 let srcStatus
 
@@ -158,20 +176,28 @@ view.showListStatus = async function() {
 
                 if (currentEmail === email && isOnline === 'online' && id === userId) {
                     srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
-                    $("#user-status").attr("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png")
-
-                } else srcStatus = ""
-
-
-                let html = `       
+                    await $("#user-status").attr("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png")
+                    if (!photoURL) photoURL = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1024px-User_icon_2.svg.png'
+                    html = `       
+                    <div class="personal">
+                    <div class="info-personal">
+                    <img class="avatar-user" src="${photoURL}" >
+                     <span class="user-name">${displayName}</span>
+                    </div>
+                     <span><img class="status " id="user-status" src="${srcStatus}" ></span>
+                    </div>
+                          `
+                } else {
+                    html = `       
     <div class="personal">
     <div class="info-personal">
     <img class="avatar-user" src="${photoURL}" >
      <span class="user-name">${displayName}</span>
     </div>
-     <span><img class="status " id="user-status" src="${srcStatus}" ></span>
+     <span><img class="status " id="user-status" src="" ></span>
     </div>
           `
+                }
                 listUserStatus.innerHTML += html
 
             });

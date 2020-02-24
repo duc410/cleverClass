@@ -2,6 +2,10 @@ controller.register = async function(registerInfo) {
     let email = registerInfo.email
     let password = registerInfo.password
     let displayName = registerInfo.name
+    let data = {
+        displayName: displayName,
+        email: email
+    }
     view.setText('register-success', '')
     view.setText('register-error', '')
     view.disable('register-btn')
@@ -17,6 +21,7 @@ controller.register = async function(registerInfo) {
         await firebase.auth().currentUser.updateProfile({
             displayName: displayName
         })
+        await firebase.firestore().collection('users').add(data)
 
     } catch (err) {
         view.setText('register-error', err.message)

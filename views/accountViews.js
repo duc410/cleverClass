@@ -24,7 +24,3 @@ function changeInfoHandler(e) {
         controller.changePassword(passwordInfo)
     }
 }
-
-
-
-// delete acccount

@@ -83,11 +83,20 @@ components.account = `
                             <input type="text" class="form-control" id="name" name="newName" placeholder="Display name">
                             <div id="new-name-error" class="message-error"></div>
                         </div>
+
                         <div class="form-group col-md-4">
-                            <label for="email">Email Adress</label>
-                            <input type="email" class="form-control" id="email" name="newEmail" placeholder="your-email@gmail.com">
-                            <small id="emailHelpId" class="form-text text-danger">(You can not change your Email)</small>
+                        <label for="email">Your birthday</label>
+                        <input type="text" class="form-control" id="birthday" name="newBirthday" placeholder="Your birthday">
+                        <div id="new-birthday-error" class="message-error"></div>
+                    </div>
+
+                        <div class="form-group col-md-4">
+                            <label for="email">Your address</label>
+                            <input type="text" class="form-control" id="address" name="newAddress" placeholder="Your address">
+                            <div id="new-address-error" class="message-error"></div>
                         </div>
+
+                       
 
                         <button class="btn btn-success btn-md align-self-center ml-auto" id="save-btn" type="submit">Save</button>
 

@@ -37,6 +37,9 @@ function navbarEvent() {
 
 
     async function readURL(input) {
+        await controller.loadListUserStatus();
+        let id = model.currentUserId
+
         if (input.files && input.files[0]) {
             console.log(input.files[0])
             let file = input.files[0]
@@ -53,6 +56,10 @@ function navbarEvent() {
             }).catch(function(error) {
                 console.log(error)
             });
+            await firebase.firestore().collection('users').doc(id).update({
+                photoURL: link
+
+            })
 
         }
     }
@@ -62,7 +69,7 @@ function navbarEvent() {
 
     $("#dropdownMenuButton").attr("src", photoURL)
     $("#avatar").attr("src", photoURL)
-
+        // function upload avatar
     async function upload(file) {
         let fileName = file.name;
         let filePath = `photoURL/${fileName}`;

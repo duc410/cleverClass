@@ -15,6 +15,7 @@ controller.loadConversations = async function() {
     }
 }
 
+
 controller.setupDatabaseChange = function() {
     let currentEmail = firebase.auth().currentUser.email
     let isFirstRun = true
@@ -48,6 +49,7 @@ controller.updateNewMessage = function(conversationId, message) {
     })
 }
 controller.loadListUserStatus = async function() {
+    let currentEmail = firebase.auth().currentUser.email
     let result = await firebase
         .firestore()
         .collection('users')
@@ -56,9 +58,17 @@ controller.loadListUserStatus = async function() {
     let listUserStatus = transformDocs(result.docs)
     model.saveListUserStatus(listUserStatus)
 
+    if (listUserStatus.length) {
+        listUserStatus.map(user => {
+            currentEmail === user.email
+            let currentUserId = user.id
+            model.saveCurrentUserId(currentUserId)
+        })
+    }
+
 }
 controller.setupStatus = async function() {
-    let currentEmail = firebase.auth().currentUser.email
+
     let result = await firebase
         .firestore()
         .collection('users')
@@ -67,6 +77,27 @@ controller.setupStatus = async function() {
     let statusUser = transformDocs(result.docs)
 
     return statusUser
+
+}
+
+controller.setupData = async function() {
+    let currentEmail = firebase.auth().currentUser.email
+    let result = await firebase
+        .firestore()
+        .collection('users')
+        .get()
+
+    let statusUser = transformDocs(result.docs)
+
+    // model.saveDataUser(statusUser);
+
+    if (statusUser.length) {
+        statusUser.map(user => {
+            currentEmail === user.email
+            currentUserData = user
+            model.saveDataUser(currentUserData)
+        })
+    }
 
 }
 
@@ -88,7 +119,4 @@ controller.addConversation = function(conversation) {
         .firestore()
         .collection('conversations')
         .add(conversation)
-}
-controller.avatarChat = async function(email) {
-
 }
