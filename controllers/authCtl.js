@@ -17,7 +17,7 @@ controller.register = async function(registerInfo) {
         await firebase.auth().currentUser.sendEmailVerification()
 
         await view.setText('register-success', 'An verification email has been sended to your email address!')
-        alert("Register Success:An verification email has been sended to your email address!")
+        alert("Register Successfully:An verification email has been sended to your email address!")
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
 

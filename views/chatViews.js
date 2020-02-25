@@ -6,7 +6,6 @@ view.showCurrentConversation = function(id) {
 
         let currentEmail = firebase.auth().currentUser.email
 
-
         let listMessage = document.getElementById('list-message')
         listMessage.innerHTML = ''
 
@@ -132,7 +131,7 @@ view.showListConversation = function() {
     if (model.conversations && model.conversations.length) {
         // show array model.conversation
         let conversations = model.conversations
-            //console.log(conversations)
+
         for (let conversation of conversations) {
 
             let { id: conversationId, title, users } = conversation

@@ -258,6 +258,12 @@ view.showComponents = async function(screenName) {
                 let formAddEmail = document.getElementById('form-add-email')
                 formAddEmail.onsubmit = addEmailConversationHandler
 
+                let formAddNewPost = document.getElementById("form-add-new-post");
+                formAddNewPost.onsubmit = formAddNewPostHandler
+
+
+
+
 
                 navbarEvent();
 
@@ -265,22 +271,56 @@ view.showComponents = async function(screenName) {
 
                 controller.setupDatabaseChange();
                 await controller.loadListUserStatus();
+                await controller.listPost();
                 await controller.setupData();
                 let dataUser = model.dataUser
+                console.log(model.listPosts)
 
                 await getDataCurrentUserInnnerHtml(dataUser);
 
-
+                view.showListStatus()
 
                 await controller.loadConversations() // load all conversations and save to model
                 view.showCurrentConversation() // read data from model and display to screen
+                await view.showListPosts();
                 view.showListConversation()
-                view.showListStatus()
+                // console.log(model.conversations)
+                // console.log(model.listUserStatus)
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            $('#blah').attr('src', e.target.result).css("display", "block").width(80)
+
+                        }
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+                $("#image").change(function() {
+                    readURL(this);
+                });
+
+                async function formAddNewPostHandler(e) {
+                    e.preventDefault();
+                    let content = formAddNewPost.post.value;
+                    let image = formAddNewPost.imagePost.files[0]
+                    console.log(image)
+
+                    let imageURL = await uploadPostImage(image)
+                    console.log(imageURL)
 
 
+                    let postContent = {
+                        content: content,
+                        image: imageURL
+                    }
+                    console.log(postContent)
 
-                console.log(model.conversations)
-                console.log(model.listUserStatus)
+                    await controller.addNewPost(postContent)
+
+                }
 
                 async function formAddMessageSubmit(e) {
                     e.preventDefault()
@@ -303,6 +343,7 @@ view.showComponents = async function(screenName) {
 
                     }
                 }
+
 
 
                 async function formAddConversationSubmit(e) {

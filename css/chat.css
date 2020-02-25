@@ -287,8 +287,12 @@
     border-radius: 50%;
 }
 
+.visibleClass {
+    visibility: hidden;
+}
+
 .user-name {
-    font-size: 14px;
+    font-size: 13px;
     font-family: inherit;
     white-space: nowrap;
     overflow: hidden;
@@ -318,4 +322,8 @@
     width: 10px;
     height: 10px;
     justify-content: flex-end;
+}
+
+.previewImage {
+    display: none;
 }

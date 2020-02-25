@@ -6,6 +6,7 @@ const model = {
     listUserStatus: null,
     currentUserId: null,
     dataUser: null,
+    listPosts: null,
 }
 model.saveClassrooms = function(classrooms) {
     model.classrooms = classrooms
@@ -30,4 +31,7 @@ model.saveCurrentUserId = function(user) {
 }
 model.saveDataUser = function(user) {
     model.dataUser = user
+}
+model.saveListPosts = function(post) {
+    model.listPosts = post
 }

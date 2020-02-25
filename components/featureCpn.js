@@ -69,95 +69,23 @@ components.chats = `
 
      <div class="card-body ">
      <strong><p class="card-title">Create Posts<p></strong>
-     <form class="form-group">
-     <input type="email" class="form-control" name="" id="" aria-describedby="emailHelpId" placeholder="What's on your mind...">
+     <form class="form-group" id="form-add-new-post">
+     <input type="text" class="form-control" name="post" id="" aria-describedby="emailHelpId" placeholder="What's on your mind...">
      <div class="upload-image">
-     <button type="button" class="btn btn-primary mt-2 post-btn">Post</button>
-     <i class="fas fa-images ml-3 mt-1"></i>
+     <button type="submit" class="btn btn-primary mt-2 post-btn">Post</button>
+     <img id="blah" class="previewImage ml-3" src="#" alt="your image" />
+     <i class="fas fa-images ml-3 mt-1" for="image" onclick="document.getElementById('image').click()"></i>
+     <input type="file" id="image" class="form-control" name="imagePost" placeholder="Image" style="visibility:hidden">
+  
+    
      </div> 
    </form>
      </div>
    </div>
 
-   <div class="card shadow post-view" >
-<div class="info-view-post">
-<img src="https://scontent.fhan2-4.fna.fbcdn.net/v/t1.0-1/p160x160/83083099_2033576800122556_3174367129692536832_o.jpg?_nc_cat=103&_nc_ohc=1rIZP__mSe4AX8LPZ8M&_nc_ht=scontent.fhan2-4.fna&_nc_tp=6&oh=b67035b32fb20d3e62bbd8555e2f13ae&oe=5EB995F2" class="card-img-top-post-view" alt="..." >
-<span>Phuc Bo</span>
-</div>
-  <div class="card-body">
-    <p class="card-text">The government in Seoul put the country on high alert after the number of infections surged over 600 with six deaths. A focal point was a church in the southeastern city of Daegu, where a 61-year-old member of the congregation with no recent record of overseas travel tested positive for the virus.
-
-    In Italy, the number of cases jumped to above 130 from just three before Friday. Authorities sealed off the worst affected towns and banned public gatherings in much of the north, including halting the carnival in Venice, where there were two cases, to try to contain the biggest outbreak in Europe.
-    
-    Italian health authorities were struggling to find out how the virus started. “If we cannot find ‘patient zero’ then it means the virus is even more ubiquitous than we thought,” said Luca Zaia, the regional governor of the wealthy Veneto region.
-    
-    Iran, which announced its first two cases on Wednesday, said it had confirmed 43 cases and eight deaths, with most of the infections in the Shi’ite Muslim holy city of Qom.</p> 
-   <button type="button" class="btn btn-light">  <i class="far fa-thumbs-up"></i> Like</button>
-  <button type="button" class="btn btn-light">  <i class="fas fa-comments"></i> Comment</button>
-  </div>
-</div>
+   <div id="show-list-post">
 
 
-<div class="card shadow post-view" >
-<div class="info-view-post">
-<img src="https://firebasestorage.googleapis.com/v0/b/mindx-c72f4.appspot.com/o/photoURL%2FLongBody.jpg?alt=media&token=eb656c69-5139-407d-8c3a-3851e6d6c63f" class="card-img-top-post-view" alt="..." >
-<span>LongBody</span>
-</div>
-  <div class="card-body"> 
-    <p class="card-text">Some one can help me?</p>
-   <button type="button" class="btn btn-light">  <i class="far fa-thumbs-up"></i> Like</button>
-  <button type="button" class="btn btn-light">  <i class="fas fa-comments"></i> Comment</button>
-  </div>
-</div>
-
-
-
-
-<div class="card shadow post-view" >
-<div class="info-view-post">
-<img src="https://scontent.fhan2-4.fna.fbcdn.net/v/t31.0-1/c47.0.160.160a/p160x160/1402926_10150004552801901_469209496895221757_o.jpg?_nc_cat=1&_nc_ohc=WT8hZaY-rJcAX_qSjxC&_nc_ht=scontent.fhan2-4.fna&oh=4415d87b7acf88e10ed4e926d46aad80&oe=5EC296BD" class="card-img-top-post-view" alt="..." >
-<span>Trang Trinh</span>
-
-</div>
-  <div class="card-body">
-    <p class="card-text">“At present, the epidemic situation is still severe and complex, and prevention and control work is in the most difficult and critical stage,” President Xi Jinping said.
-
-    State run television urged people to avoid complacency, drawing attention to people gathering in public areas and tourist spots without wearing masks.
-    
-    The virus has killed 2,442 people in China, which has reported 76,936 cases, and has slammed the brakes on the world’s second largest economy. It has spread to some 26 other countries and territories, with a death toll of around two dozen, according to a Reuters tally.</p> 
-   <button type="button" class="btn btn-light">  <i class="far fa-thumbs-up"></i> Like</button>
-  <button type="button" class="btn btn-light">  <i class="fas fa-comments"></i> Comment</button>
-  </div>
-</div>
-
-
-<div class="card shadow post-view" >
-<div class="info-view-post">
-<img src="https://scontent.fhan2-4.fna.fbcdn.net/v/t1.0-1/p160x160/83083099_2033576800122556_3174367129692536832_o.jpg?_nc_cat=103&_nc_ohc=1rIZP__mSe4AX8LPZ8M&_nc_ht=scontent.fhan2-4.fna&_nc_tp=6&oh=b67035b32fb20d3e62bbd8555e2f13ae&oe=5EB995F2" class="card-img-top-post-view" alt="..." >
-<span>Phuc Bo</span>
-</div>
-  <div class="card-body">
-<img class="img-fluid" src="https://i.pinimg.com/736x/3f/cd/c4/3fcdc4de321c46a6da56f58ac8112478.jpg">
-   <div>
-   <button type="button" class="btn btn-light">  <i class="far fa-thumbs-up"></i> Like</button>
-  <button type="button" class="btn btn-light">  <i class="fas fa-comments"></i> Comment</button>
-   </div>
-  </div>
-</div>
-
-
-
-<div class="card shadow post-view" >
-<div class="info-view-post">
-<img src="https://scontent.fhan2-4.fna.fbcdn.net/v/t31.0-1/c47.0.160.160a/p160x160/1402926_10150004552801901_469209496895221757_o.jpg?_nc_cat=1&_nc_ohc=WT8hZaY-rJcAX_qSjxC&_nc_ht=scontent.fhan2-4.fna&oh=4415d87b7acf88e10ed4e926d46aad80&oe=5EC296BD" class="card-img-top-post-view" alt="..." >
-<span>Trang Trinh</span>
-
-</div>
-  <div class="card-body">
-  <img class="img-fluid" src="https://i.pinimg.com/originals/7d/a9/11/7da91185b7ae087d9e18a88b8b28362c.jpg">
-   <button type="button" class="btn btn-light">  <i class="far fa-thumbs-up"></i> Like</button>
-  <button type="button" class="btn btn-light">  <i class="fas fa-comments"></i> Comment</button>
-  </div>
 </div>
 
 

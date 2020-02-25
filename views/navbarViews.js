@@ -70,6 +70,7 @@ function navbarEvent() {
     $("#dropdownMenuButton").attr("src", photoURL)
     $("#avatar").attr("src", photoURL)
         // function upload avatar
+
     async function upload(file) {
         let fileName = file.name;
         let filePath = `photoURL/${fileName}`;
