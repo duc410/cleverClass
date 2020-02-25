@@ -304,6 +304,7 @@ view.showComponents = async function(screenName) {
 
                 async function formAddNewPostHandler(e) {
                     e.preventDefault();
+                    view.disable('post-btn')
                     let content = formAddNewPost.post.value;
                     let image = formAddNewPost.imagePost.files[0]
                     console.log(image)
@@ -319,6 +320,8 @@ view.showComponents = async function(screenName) {
                     console.log(postContent)
 
                     await controller.addNewPost(postContent)
+
+                    view.enable('post-btn')
 
                 }
 

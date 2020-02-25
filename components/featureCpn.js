@@ -72,7 +72,7 @@ components.chats = `
      <form class="form-group" id="form-add-new-post">
      <input type="text" class="form-control" name="post" id="" aria-describedby="emailHelpId" placeholder="What's on your mind...">
      <div class="upload-image">
-     <button type="submit" class="btn btn-primary mt-2 post-btn">Post</button>
+     <button type="submit" class="btn btn-primary mt-2 post-btn" id="post-btn">Post</button>
      <img id="blah" class="previewImage ml-3" src="#" alt="your image" />
      <i class="fas fa-images ml-3 mt-1" for="image" onclick="document.getElementById('image').click()"></i>
      <input type="file" id="image" class="form-control" name="imagePost" placeholder="Image" style="visibility:hidden">
