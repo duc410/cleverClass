@@ -81,7 +81,7 @@ controller.setupStatus = async function() {
 }
 
 controller.setupData = async function() {
-    let currentEmail = firebase.auth().currentUser.email
+
     let result = await firebase
         .firestore()
         .collection('users')
@@ -89,15 +89,8 @@ controller.setupData = async function() {
 
     let statusUser = transformDocs(result.docs)
 
-    // model.saveDataUser(statusUser);
+    model.saveDataUser(statusUser)
 
-    if (statusUser.length) {
-        statusUser.map(user => {
-            currentEmail === user.email
-            currentUserData = user
-            model.saveDataUser(currentUserData)
-        })
-    }
 
 }
 

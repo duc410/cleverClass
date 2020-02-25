@@ -265,10 +265,11 @@ view.showComponents = async function(screenName) {
 
                 controller.setupDatabaseChange();
                 await controller.loadListUserStatus();
-
-                await getDataCurrentUserInnnerHtml();
-
                 await controller.setupData();
+                let dataUser = model.dataUser
+
+                await getDataCurrentUserInnnerHtml(dataUser);
+
 
 
                 await controller.loadConversations() // load all conversations and save to model
@@ -463,10 +464,16 @@ view.showComponents = async function(screenName) {
 
                 // set data for displayName and email of account setting
                 $("#name").val(userName)
+
                 await controller.loadListUserStatus();
+                await controller.setupData();
+                let dataUser = model.dataUser
+
+                await getDataCurrentUser(dataUser)
+
                 let id = model.currentUserId
 
-                await getDataCurrentUser()
+
                 // let data = await controller.setupStatus();
                 // console.log(data)
 

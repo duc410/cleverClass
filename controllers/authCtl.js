@@ -4,7 +4,8 @@ controller.register = async function(registerInfo) {
     let displayName = registerInfo.name
     let data = {
         displayName: displayName,
-        email: email
+        email: email,
+        photoURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1024px-User_icon_2.svg.png'
     }
     view.setText('register-success', '')
     view.setText('register-error', '')

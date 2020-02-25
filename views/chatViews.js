@@ -44,7 +44,7 @@ view.showCurrentConversation = function(id) {
                     }
 
                 })
-                if (!photo) photo = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1024px-User_icon_2.svg.png'
+
 
                 html = `
     <div class="${className} show-message" >
@@ -177,7 +177,6 @@ view.showListStatus = async function() {
                 if (currentEmail === email && isOnline === 'online' && id === userId) {
                     srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
                     await $("#user-status").attr("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png")
-                    if (!photoURL) photoURL = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/1024px-User_icon_2.svg.png'
                     html = `       
                     <div class="personal">
                     <div class="info-personal">
