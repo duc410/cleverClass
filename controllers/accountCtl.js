@@ -79,3 +79,30 @@ controller.deleteAccount = async function(credential) {
 
 
 }
+
+controller.setupStatus = async function() {
+
+    let result = await firebase
+        .firestore()
+        .collection('users')
+        .get()
+
+    let statusUser = transformDocs(result.docs)
+
+    return statusUser
+
+}
+
+controller.setupData = async function() {
+
+    let result = await firebase
+        .firestore()
+        .collection('users')
+        .get()
+
+    let statusUser = transformDocs(result.docs)
+
+    model.saveDataUser(statusUser)
+
+
+}

@@ -472,6 +472,7 @@ view.showComponents = async function(screenName) {
                 await getDataCurrentUser(dataUser)
 
                 let id = model.currentUserId
+                console.log(id)
 
 
                 // let data = await controller.setupStatus();

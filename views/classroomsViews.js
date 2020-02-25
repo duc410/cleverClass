@@ -1,10 +1,10 @@
 view.showListClassrooms = function() {
-    if(model.classrooms){
+    if (model.classrooms) {
         let classrooms = model.classrooms
         let classList = document.getElementById('classList')
         let html = classList.innerHTML
-        for(let classroom of classrooms){
-            let {decription, teacher, id: classroomId} = classroom
+        for (let classroom of classrooms) {
+            let { decription, teacher, id: classroomId } = classroom
             let courseName = decription.courseName
             html += `<div id="${classroomId}" class="class-item">
             <div class="class-item-content">
@@ -15,31 +15,31 @@ view.showListClassrooms = function() {
         }
         classList.innerHTML = html
 
-        for(let classroom of classrooms){
+        for (let classroom of classrooms) {
             let classroomId = classroom.id
             let classroomCard = document.getElementById(classroomId)
-            classroomCard.onclick = function(){
+            classroomCard.onclick = function() {
                 model.saveCurrentClassroom(classroom)
                 view.showComponents('classroom')
             }
         }
-        
+
     }
 }
-view.showListClassroomsAsideLeft = function(){
-    if(model.classrooms){
+view.showListClassroomsAsideLeft = function() {
+    if (model.classrooms) {
         let html = ``
-        for(let classroom of model.classrooms){
+        for (let classroom of model.classrooms) {
             let classroomId = classroom.id
             let courseName = classroom.decription.courseName
             html += `<li id="${classroomId}">${courseName}</li>`
         }
         document.getElementById('my-class-list').innerHTML = html
 
-        for(let classroom of model.classrooms){
+        for (let classroom of model.classrooms) {
             let classroomId = classroom.id
             let classroomCard = document.getElementById(classroomId)
-            classroomCard.onclick = function(){
+            classroomCard.onclick = function() {
                 model.saveCurrentClassroom(classroom)
                 view.showCurrentClassroom()
             }
@@ -49,10 +49,10 @@ view.showListClassroomsAsideLeft = function(){
 }
 view.showCurrentClassroom = function() {
     console.log(model.currentClassroom)
-    if(model.currentClassroom){
-        let {decription, teacher, members, lessons} = model.currentClassroom
-        let {courseName, courseTarget, courseTime} = decription
-        let {start: courseTimeStart, end: courseTimeEnd, numberOfLesson} = courseTime
+    if (model.currentClassroom) {
+        let { decription, teacher, members, lessons } = model.currentClassroom
+        let { courseName, courseTarget, courseTime } = decription
+        let { start: courseTimeStart, end: courseTimeEnd, numberOfLesson } = courseTime
         let numberOfStudent = members.length - 1
 
         //display decription
@@ -67,16 +67,16 @@ view.showCurrentClassroom = function() {
                 <li>Ngày kết thúc: ${courseTimeEnd}</li>
             </ul>
         `
-        //display lesson
+            //display lesson
         let lessonsHTML = ""
         let index = 1
-        for(let lesson of lessons){
+        for (let lesson of lessons) {
             lessonsHTML += `
                 <li class="learn-outline-item">
                     Bài ${index}: ${lesson}
                 </li>
                 `
-            index ++
+            index++
         }
         document.getElementById('lessons').innerHTML = lessonsHTML
     }

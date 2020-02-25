@@ -56,13 +56,12 @@ async function checkStatusUser() {
     let uid;
     console.log(id)
 
-    id.map(user => {
+    id.map(user => async function() {
         if (user.email === currentEmail) {
             uid = user.id
+            console.log(uid)
 
-
-
-            var userStatusDatabaseRef = firebase.database().ref('/status/' + uid);
+            var userStatusDatabaseRef = await firebase.database().ref('/status/' + uid);
 
             var isOfflineForDatabase = {
                 state: 'offline',

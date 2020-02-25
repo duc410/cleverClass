@@ -35,7 +35,6 @@ view.showCurrentConversation = function(id) {
             for (let infoUser of infoUsers) {
 
                 let { displayName, photoURL, email } = infoUser;
-                console.log(photo)
 
                 userArray.map(user => {
                     if (owner === email) {
@@ -84,23 +83,43 @@ function updateAvatar() {
 }
 
 view.showListMember = function() {
-    let listConversation = document.getElementById('list-member')
-    listConversation.innerHTML = ""
+    let listConversation = document.getElementById('listMember')
 
+
+    infoUsers = model.listUserStatus
 
 
     // show array model.conversation
     let conversations = model.currentConversation
         // console.log(model.currentConversation.id)
-
+    let html;
+    let photo;
+    let name;
     let users = conversations.users;
-    console.log(conversations)
+    console.log(infoUsers)
+    console.log(users)
+    for (let infoUser of infoUsers) {
+        let { displayName, photoURL, email } = infoUser;
+        users.map(user => {
+            // console.log(user)
 
-    let userLength = conversations.users.length;
-    let member = userLength > 1 ? (userLength + 'members') : (userLength + 'member')
-    let html = users.map(user => `     
-          <div class="conversation-member-right">${user}</div>
-         `)
+
+            if (user === email) {
+                photo = photoURL
+                    // console.log(photo)
+                name = displayName
+                    // console.log(name)
+
+                html += `   
+          <div class="conversation-member-right">
+           <img class="avatar-member" src="${photo}">
+             ${name}</div>
+         `
+            }
+        })
+    }
+
+
     listConversation.innerHTML = html
 
 }
@@ -166,7 +185,8 @@ view.showListStatus = async function() {
                 var isOnline
                 let id = doc.id
 
-                isOnline = await doc.data().state;
+                isOnline = "online"
+                    // await doc.data().state;
                 console.log(isOnline)
 
                 let srcStatus

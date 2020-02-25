@@ -60,39 +60,15 @@ controller.loadListUserStatus = async function() {
 
     if (listUserStatus.length) {
         listUserStatus.map(user => {
-            currentEmail === user.email
-            let currentUserId = user.id
-            model.saveCurrentUserId(currentUserId)
+            if (currentEmail === user.email) {
+                let currentUserId = user.id
+                model.saveCurrentUserId(currentUserId)
+            }
         })
     }
 
 }
-controller.setupStatus = async function() {
 
-    let result = await firebase
-        .firestore()
-        .collection('users')
-        .get()
-
-    let statusUser = transformDocs(result.docs)
-
-    return statusUser
-
-}
-
-controller.setupData = async function() {
-
-    let result = await firebase
-        .firestore()
-        .collection('users')
-        .get()
-
-    let statusUser = transformDocs(result.docs)
-
-    model.saveDataUser(statusUser)
-
-
-}
 
 
 controller.validateEmailExists = async function(email) {

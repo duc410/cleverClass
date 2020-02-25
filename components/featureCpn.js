@@ -257,7 +257,7 @@ components.chats = `
     </div>
     <div class="modal-body">
     
-<div id="list-member"></div>
+<div id="listMember"></div>
 
     </div>
     

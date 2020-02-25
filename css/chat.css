@@ -139,10 +139,10 @@
 }
 
 .conversation-member-right {
-    font-size: 12;
-    text-align: right;
-    font-style: italic;
+    font-size: 15;
     display: block;
+    font-weight: 500;
+    padding: 5px;
 }
 
 
@@ -188,6 +188,12 @@
 
 .my-profile {
     font-family: "Open Sans", sans-serif;
+}
+
+.avatar-member {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
 }
 
 .information-user {

@@ -13,16 +13,18 @@ controller.register = async function(registerInfo) {
 
     try {
         await firebase.auth().createUserWithEmailAndPassword(email, password)
+        await firebase.firestore().collection('users').add(data)
         await firebase.auth().currentUser.sendEmailVerification()
 
         await view.setText('register-success', 'An verification email has been sended to your email address!')
+        alert("Register Success:An verification email has been sended to your email address!")
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
 
         await firebase.auth().currentUser.updateProfile({
             displayName: displayName
         })
-        await firebase.firestore().collection('users').add(data)
+
 
     } catch (err) {
         view.setText('register-error', err.message)
