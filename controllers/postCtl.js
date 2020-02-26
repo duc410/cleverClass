@@ -26,6 +26,32 @@ controller.addNewPost = async function(postContent) {
     await firebase.firestore().collection('posts').add(data)
 
 }
+controller.setupDatabasePostChange = function() {
+    let currentEmail = firebase.auth().currentUser.email
+    let isFirstRun = true
+
+    firebase.firestore().collection('posts').where('emailPost', '==', currentEmail).onSnapshot(function(snapshot) {
+        if (isFirstRun) {
+            isFirstRun = false
+            return
+        }
+        let docChanges = snapshot.docChanges()
+        for (docChange of docChanges) {
+            if (docChange.type == "modified") {
+                let conversationChange = transformDoc(docChange.doc)
+                model.updateConversation(conversationChange)
+                view.showCurrentConversation()
+
+            }
+            if (docChanges.type == 'added') {
+                let conversationChange = transformDoc(docChange.doc)
+                model.updateConversation(conversationChange)
+                view.showListConversation()
+            }
+        }
+
+    })
+}
 
 
 

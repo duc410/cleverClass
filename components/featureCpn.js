@@ -2,31 +2,7 @@ components.chats = `
 <section>
 
 <div class="container-fluid" style="display:flex">
-    <div class="chat-container">  
-        <div class="current-conversation shadow">
-            <div class="dropdown">
-                <i class="fas fa-cog setting dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#createGroup"> <i class="fas fa-users"></i> Create New Group</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-user-plus"></i> Add People</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#memberModal"> <i class="fas fa-user-alt"></i> Member</a>
-                    <a class="dropdown-item" href="#" id="leave-conversation-btn"> <i class="fas fa-sign-out-alt"></i> Leave Group</a>
-                </div>
-                <div class="dropdown-divider"></div>
-
-            </div>
-
-
-            <div id="list-message" class="list-message"> </div>
-            <form id="form-add-message" class="form-add-message">
-                <input type="text" class="form-control" name="message" placeholder="Enter your message...">
-                <!-- <span class="emoji-show" id="emoji-show"><i class="fas fa-smile-beam"></i></span>
-            <span class="thumb-up" id="laugh-show"><i class="fas fa-thumbs-up"></i></span> -->
-                <button type="submit" class="btn btn-primary" id="form-add-message-btn">Send</button>
-            </form>
-
-        </div>
-    </div>
+  
 
 
     <div id="social-media" class="social-media ">
@@ -65,7 +41,7 @@ components.chats = `
      </div> 
      
      <div class="card shadow card-social-post">
-     <div>
+     <div class="post-input">
 
      <div class="card-body ">
      <strong><p class="card-title">Create Posts<p></strong>
@@ -104,8 +80,39 @@ components.chats = `
     <h6 class="contact">Contact Users</h6>
     <hr/>
     <div class="user" id="list-user-status"></div>
+ 
+   <button class="btn btn-primary message-btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+   <i class="fab fa-facebook-messenger"></i> Messenger
+ </button>
 
     </div>
+
+
+    <div class="chat-container collapse" id="collapseExample">  
+    <div class="current-conversation shadow">
+        <div class="dropdown">
+            <i class="fas fa-cog setting dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+            <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" data-toggle="modal" data-target="#createGroup"> <i class="fas fa-users"></i> Create New Group</a>
+                <a class="dropdown-item" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-user-plus"></i> Add People</a>
+                <a class="dropdown-item" data-toggle="modal" data-target="#memberModal"> <i class="fas fa-user-alt"></i> Member</a>
+                <a class="dropdown-item" href="#" id="leave-conversation-btn"> <i class="fas fa-sign-out-alt"></i> Leave Group</a>
+            </div>
+            <div class="dropdown-divider"></div>
+
+        </div>
+
+
+        <div id="list-message" class="list-message"> </div>
+        <form id="form-add-message" class="form-add-message">
+            <input type="text" class="form-control" name="message" placeholder="Enter your message...">
+            <!-- <span class="emoji-show" id="emoji-show"><i class="fas fa-smile-beam"></i></span>
+        <span class="thumb-up" id="laugh-show"><i class="fas fa-thumbs-up"></i></span> -->
+            <button type="submit" class="btn btn-primary" id="form-add-message-btn">Send</button>
+        </form>
+
+    </div>
+</div>
 
    
 
