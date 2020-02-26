@@ -12,3 +12,20 @@ model.updateConversation = function(conversation) {
         model.conversations.push(conversation)
     }
 }
+
+model.updatePost = function(conversation) {
+
+    model.saveListPosts(conversation)
+    console.log(model.listPosts)
+
+    // let existedIndex = model.saveListPosts.findIndex(function(element) {
+    //     return element.id == conversation.id
+    // })
+    // if (existedIndex >= 0) {
+    //     model.saveListPosts[existedIndex] = conversation
+    //         // model.conversation.splice(existedIndex,1,conversation)
+    // } else {
+    //     model.saveListPosts.push(conversation)
+    // }
+
+}

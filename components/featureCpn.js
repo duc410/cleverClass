@@ -6,7 +6,7 @@ components.chats = `
 
 
     <div id="social-media" class="social-media ">
-  <div>
+  <div class="aside-left-chat">
     <div class="card shadow card-info" style="width: 18rem;">
     <h5 class="card-title text-center">My Profile</h5>
     <div class="avatar-social">
@@ -81,14 +81,14 @@ components.chats = `
     <hr/>
     <div class="user" id="list-user-status"></div>
  
-   <button class="btn btn-primary message-btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+   <button class="btn btn-primary message-btn" type="button" data-toggle="collapse" data-target="#collapseMessage" aria-expanded="false" aria-controls="collapseMessage">
    <i class="fab fa-facebook-messenger"></i> Messenger
  </button>
 
     </div>
 
 
-    <div class="chat-container collapse" id="collapseExample">  
+    <div class="chat-container collapse" id="collapseMessage">  
     <div class="current-conversation shadow">
         <div class="dropdown">
             <i class="fas fa-cog setting dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>

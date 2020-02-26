@@ -45,7 +45,7 @@ view.showCurrentConversation = function(id) {
 
 
                 html = `
-    <div class="${className} show-message" >
+    <div class="${className} show-message"  >
     <div class="show-info"><img id="myImage" class="myImage" src="${photo}">
     <div class="none"> <div >${name}</div>
     </div></div>
@@ -143,7 +143,7 @@ view.showListConversation = function() {
             let className = (model.currentConversation && model.currentConversation.id == conversation.id) ?
                 'conversation current' : 'conversation'
             let html = `
-           <div class="${className} mt-2">
+           <div class="${className} mt-2" data-toggle="collapse" data-target="#collapseMessage" aria-expanded="false" aria-controls="collapseMessage">
            <div id="${conversationId}"  id="listConversationToChange">
            <div class="conversation-title"><i class="fas fa-users conversation-icon-group"></i> ${title}</div>
        </div></div>

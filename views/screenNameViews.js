@@ -270,6 +270,7 @@ view.showComponents = async function(screenName) {
 
 
                 controller.setupDatabaseChange();
+                controller.setupPostChange();
                 await controller.loadListUserStatus();
                 await controller.listPost();
                 await controller.setupData();
@@ -281,9 +282,11 @@ view.showComponents = async function(screenName) {
                 view.showListStatus()
 
                 await controller.loadConversations() // load all conversations and save to model
+
                 view.showCurrentConversation() // read data from model and display to screen
                 await view.showListPosts();
                 view.showListConversation()
+                // await controller.loadNewPost() // load all conversations and save to model
                 // console.log(model.conversations)
                 // console.log(model.listUserStatus)
                 function readURL(input) {
@@ -291,7 +294,7 @@ view.showComponents = async function(screenName) {
                         var reader = new FileReader();
 
                         reader.onload = function(e) {
-                            $('#blah').attr('src', e.target.result).css("display", "block").width(80)
+                            $('#blah').attr('src', e.target.result).css("display", "block").width(80).height(50)
 
                         }
 
@@ -307,9 +310,14 @@ view.showComponents = async function(screenName) {
                     view.disable('post-btn')
                     let content = formAddNewPost.post.value;
                     let image = formAddNewPost.imagePost.files[0]
-                    console.log(image)
+                    console.log(content)
+                    let imageURL;
+                    if (image) {
+                        imageURL = await uploadPostImage(image)
+                    } else
+                        imageURL = ""
 
-                    let imageURL = await uploadPostImage(image)
+
                     console.log(imageURL)
 
 

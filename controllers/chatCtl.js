@@ -15,6 +15,24 @@ controller.loadConversations = async function() {
     }
 }
 
+controller.loadNewPost = async function() {
+    let currentEmail = firebase.auth().currentUser.email
+    let result = await firebase
+        .firestore()
+        .collection('posts')
+        .where('emailPost', 'array-contains', currentEmail)
+        .get()
+
+    let posts = transformDocs(result.docs)
+
+    model.saveListPosts(posts)
+    if (posts.length) {
+        let newPost = posts[0]
+        model.saveListJustPost(currentConversation)
+    }
+}
+
+
 
 controller.setupDatabaseChange = function() {
     let currentEmail = firebase.auth().currentUser.email

@@ -20,13 +20,15 @@ controller.addNewPost = async function(postContent) {
     let data = {
         content: content,
         image: image,
-        emailPost: currentEmail
+        emailPost: currentEmail,
+        createAt: new Date().toISOString()
     }
 
     await firebase.firestore().collection('posts').add(data)
 
+
 }
-controller.setupDatabasePostChange = function() {
+controller.setupPostChange = function() {
     let currentEmail = firebase.auth().currentUser.email
     let isFirstRun = true
 
@@ -36,17 +38,16 @@ controller.setupDatabasePostChange = function() {
             return
         }
         let docChanges = snapshot.docChanges()
+        console.log(docChanges)
         for (docChange of docChanges) {
-            if (docChange.type == "modified") {
-                let conversationChange = transformDoc(docChange.doc)
-                model.updateConversation(conversationChange)
-                view.showCurrentConversation()
+            console.log(docChanges)
+            console.log(docChange.type)
 
-            }
-            if (docChanges.type == 'added') {
-                let conversationChange = transformDoc(docChange.doc)
-                model.updateConversation(conversationChange)
-                view.showListConversation()
+            if (docChange.type === "added") {
+                let postChange = transformDoc(docChange.doc)
+                console.log(postChange)
+                model.saveListPosts(postChange)
+                view.showNewPosts(postChange)
             }
         }
 
