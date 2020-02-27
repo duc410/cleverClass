@@ -86,6 +86,7 @@ view.showListPosts = async function() {
             showListPost.innerHTML += html
 
         }
+
         showListPost.scrollTop = showListPost.scrollHeight
     }
 

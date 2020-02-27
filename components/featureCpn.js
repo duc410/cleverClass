@@ -90,6 +90,7 @@ components.chats = `
 
     <div class="chat-container collapse" id="collapseMessage">  
     <div class="current-conversation shadow">
+   
         <div class="dropdown">
             <i class="fas fa-cog setting dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
             <div class="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="dropdownMenuButton">

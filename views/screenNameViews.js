@@ -245,6 +245,8 @@ view.showComponents = async function(screenName) {
                 let myWeb = document.getElementById('my-web')
                 myWeb.innerHTML = components.navbar + components.chats
 
+
+
                 let formAddMessage = document.getElementById('form-add-message')
                 formAddMessage.onsubmit = formAddMessageSubmit
 
@@ -261,13 +263,7 @@ view.showComponents = async function(screenName) {
                 let formAddNewPost = document.getElementById("form-add-new-post");
                 formAddNewPost.onsubmit = formAddNewPostHandler
 
-
-
-
-
-                navbarEvent();
-
-
+                navbarEventForChats();
 
                 controller.setupDatabaseChange();
                 controller.setupPostChange();
@@ -287,9 +283,13 @@ view.showComponents = async function(screenName) {
                 view.showCurrentConversation() // read data from model and display to screen
                 await view.showListPosts();
                 view.showListConversation()
+
                 // await controller.loadNewPost() // load all conversations and save to model
                 // console.log(model.conversations)
                 // console.log(model.listUserStatus)
+
+
+
                 function readURL(input) {
                     if (input.files && input.files[0]) {
                         var reader = new FileReader();
@@ -606,6 +606,7 @@ view.showComponents = async function(screenName) {
 
                         })
                     }
+                    view.showComponents('personal')
 
                 }
 

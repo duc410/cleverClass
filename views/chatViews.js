@@ -1,7 +1,7 @@
 view.showCurrentConversation = function(id) {
     if (model.currentConversation && model.listUserStatus) {
-        let messages = model.currentConversation.messages
-        let userArray = model.currentConversation.users
+        let messages = model.currentConversation.messages;
+        let userArray = model.currentConversation.users;
         infoUsers = model.listUserStatus
 
         let currentEmail = firebase.auth().currentUser.email
@@ -21,6 +21,7 @@ view.showCurrentConversation = function(id) {
 
             let content = message.content
             let owner = message.owner
+
 
             let className = ''
             if (owner == currentEmail) {
@@ -128,6 +129,10 @@ view.showListConversation = function() {
     view.showListMember()
     let listConversation = document.getElementById('list-conversation')
     listConversation.innerHTML = ""
+
+
+
+
     if (model.conversations && model.conversations.length) {
         // show array model.conversation
         let conversations = model.conversations
@@ -136,6 +141,8 @@ view.showListConversation = function() {
 
             let { id: conversationId, title, users } = conversation
             let user = users.length;
+
+
 
 
             let member = user > 1 ? (user + 'members') : (user + 'member')
@@ -178,47 +185,24 @@ view.showListStatus = async function() {
         id.map(user => {
 
             uid = user.id
-            var userStatusFirestoreRef = firebase.firestore().doc('/status/' + uid);
-            userStatusFirestoreRef.onSnapshot(async function(doc) {
 
-                var isOnline
-                let id = doc.id
+            let { id: userId, displayName, photoURL, email } = user
+            console.log(userId)
 
-                isOnline = "online"
-                    // await doc.data().state;
-                console.log(isOnline)
-
-                let srcStatus
-
-                let { id: userId, displayName, photoURL, email } = user
-                console.log(userId)
-
-                if (currentEmail === email && isOnline === 'online' && id === userId) {
-                    srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
-                    await $("#user-status").attr("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png")
-                    html = `       
+            srcStatus = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png"
+            $("#user-status").attr("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Green_sphere.svg/600px-Green_sphere.svg.png")
+            html = `       
                     <div class="personal">
                     <div class="info-personal">
                     <img class="avatar-user" src="${photoURL}" >
                      <span class="user-name">${displayName}</span>
                     </div>
-                     <span><img class="status " id="user-status" src="${srcStatus}" ></span>
+                  
                     </div>
                           `
-                } else {
-                    html = `       
-    <div class="personal">
-    <div class="info-personal">
-    <img class="avatar-user" src="${photoURL}" >
-     <span class="user-name">${displayName}</span>
-    </div>
-     <span><img class="status " id="user-status" src="" ></span>
-    </div>
-          `
-                }
-                listUserStatus.innerHTML += html
 
-            });
+            listUserStatus.innerHTML += html
+
         })
 
 

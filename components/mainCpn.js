@@ -17,6 +17,12 @@ components.navbar = `
 
          
         </ul>
+
+        <form class="form-inline my-2 my-lg-0 mr-5 form-search" id="form-search">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
         <i class="fas fa-bell notify mr-4"><span class="numberOfNotify">3</span></i>
         <div class="dropdown">
 
@@ -86,7 +92,7 @@ components.account = `
 
                         <div class="form-group col-md-4">
                         <label for="email">Your birthday</label>
-                        <input type="text" class="form-control" id="birthday" name="newBirthday" placeholder="Your birthday">
+                        <input type="text" class="form-control" id="birthday" name="newBirthday" placeholder="DD/MM/YY">
                         <div id="new-birthday-error" class="message-error"></div>
                     </div>
 
