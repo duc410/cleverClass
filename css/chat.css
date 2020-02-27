@@ -342,6 +342,22 @@
     font-size: 12px;
 }
 
+.comment-post {
+    display: flex;
+}
+
+.form-add-comment-post {
+    height: 37px;
+}
+
+.form-add-comment-post::placeholder {
+    opacity: 0.7;
+}
+
+.form-add-comment {
+    width: 100%;
+}
+
 @media only screen and (max-width: 600px) {
     .aside-left-chat {
         display: none;

@@ -279,6 +279,7 @@ view.showComponents = async function(screenName) {
 
                 await getDataCurrentUserInnnerHtml(dataUser);
 
+
                 view.showListStatus()
 
                 await controller.loadConversations() // load all conversations and save to model

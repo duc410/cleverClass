@@ -1,5 +1,6 @@
 view.showListPosts = async function() {
     let showListPost = document.getElementById("show-list-post")
+    let photoCurrentUserCmt = firebase.auth().currentUser.providerData[0].photoURL;
     showListPost.innerHTML = ''
     let posts = model.listPosts
     infoUsers = model.listUserStatus;
@@ -31,14 +32,21 @@ view.showListPosts = async function() {
                 }
                 if (!image) {
                     classNameImg = "visibleClass"
-                } else classNameImg = "img-fluid mt-4"
+
+                } else {
+                    classNameImg = "img-fluid mt-4"
+                    idCollapse = image
+                }
 
                 if (!content) {
                     classNameContent = "visibleClass"
-                } else classNameContent = ""
-
+                } else {
+                    classNameContent = ""
+                    idCollapse = content
+                }
                 html = `
-            <div class="card shadow post-view" >
+           
+<div class="card shadow post-view" >
 <div class="info-view-post">
 <div class="nav-post d-flex">
 <img src="${photo}" class="card-img-top-post-view" alt="..." >
@@ -49,16 +57,27 @@ view.showListPosts = async function() {
 </div>
 
 </div>
-  <div class="card-body">
-  <div class="${classNameContent}" >${content}</div>
+<div class="card-body">
+<div class="${classNameContent}" >${content}</div>
 <img class="${classNameImg}" src="${image}">
 
-   <div class="mt-3">
-   <hr/>
-   <button type="button" class="btn btn-light">  <i class="far fa-thumbs-up"></i> Like</button>
-  <button type="button" class="btn btn-light">  <i class="fas fa-comments"></i> Comment</button>
-   </div>
-  </div>
+<div class="mt-3">
+<hr/>
+<button type="button" class="btn btn-light">  <i class="far fa-thumbs-up"></i> Like</button>
+<button type="button" class="btn btn-light" data-toggle="collapse" data-target="#${idCollapse}" aria-expanded="false" aria-controls="${idCollapse}">  <i class="fas fa-comments"></i> Comment</button>
+</div>
+
+<div class="comment-post mt-3 collapse" id="${idCollapse}">
+<hr/>
+<img class="avatar-user mt-1 mr-1" src="${photoCurrentUserCmt}" >
+<form class="form-group card form-add-comment">
+  <input type="text"
+    class="form-control form-add-comment-post" name="" id="" aria-describedby="helpId" placeholder="Write a comment...">
+</form>
+</div>
+
+
+</div>
 </div>
 
             `
@@ -130,8 +149,14 @@ view.showNewPosts = function(post) {
    <button type="button" class="btn btn-light">  <i class="far fa-thumbs-up"></i> Like</button>
   <button type="button" class="btn btn-light">  <i class="fas fa-comments"></i> Comment</button>
    </div>
-  </div>
 </div>
+<div class="comment-post">
+<img class="avatar-user" src="" id="avatar-comment-post" >
+<span class="card"></span>
+  </div>
+
+ 
+
 
             `
 
