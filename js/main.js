@@ -36,7 +36,7 @@ function init() {
 
     firebase.auth().onAuthStateChanged(function(user) {
 
-        if (user && user.emailVerified || user && user.providerData[0].providerId === "facebook.com") {
+        if (user && user.emailVerified) {
             $('body').css('padding-right', '0px')
 
             view.showComponents('personal')
