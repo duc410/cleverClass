@@ -23,7 +23,7 @@ components.home = `<div>
     <div class="introduce text-white ml-5">
         <h3 class="mt-5 font-weight-bold">Tạo lớp học chưa bao giờ dễ dàng đến thế</h3>
         Clever Class cho phép tạo, quản lý lớp học, tương tác với các thành viên trên nền tảng free
-        <button type="button" class="btn btn-info"  data-toggle="modal" data-target="#form-modal"
+        <button type="button" class="btn btn-info ml-2 mt-2"  data-toggle="modal" data-target="#form-modal"
         onclick="showTap('sign in')">Bắt đầu ngay</button>
     </div>
 </header>

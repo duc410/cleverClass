@@ -7,15 +7,19 @@ view.showListPosts = async function() {
     let photo;
     let name;
     let html;
+    let idCollapse;
+
+
     // console.log(posts)
 
     if (posts) {
 
         for (let post of posts) {
             // console.log(post)
-            let { emailPost, image, content, createAt } = post
-            // console.log(image)
-            // console.log(content)
+            let { id: postId, emailPost, image, content, createAt, like } = post
+            console.log(like)
+                // console.log(image)
+                // console.log(content)
 
             for (let infoUser of infoUsers) {
 
@@ -23,6 +27,7 @@ view.showListPosts = async function() {
                 // console.log(emailPost)
                 // console.log(email)
                 // console.log(createAt)
+
 
                 if (emailPost === email) {
                     photo = photoURL
@@ -36,6 +41,7 @@ view.showListPosts = async function() {
                 } else {
                     classNameImg = "img-fluid mt-4"
                     idCollapse = image
+                    idLike = image
                 }
 
                 if (!content) {
@@ -63,7 +69,7 @@ view.showListPosts = async function() {
 
 <div class="mt-3">
 <hr/>
-<button type="button" class="btn btn-light">  <i class="far fa-thumbs-up"></i> Like</button>
+<button type="button" class="btn btn-light" onclick="toggleLike(this)" data-isLike="false" id="${postId}"> <i class="far fa-thumbs-up thumbUp"></i> Like</button>
 <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#${idCollapse}" aria-expanded="false" aria-controls="${idCollapse}">  <i class="fas fa-comments"></i> Comment</button>
 </div>
 
@@ -91,13 +97,42 @@ view.showListPosts = async function() {
             `
 
             }
+
             $("#loader").css("display", "none")
+
             showListPost.innerHTML += html
+
 
         }
 
+
+
         showListPost.scrollTop = showListPost.scrollHeight
     }
+
+    // thumbUp();
+
+    // function thumbUp() {
+
+
+
+    //     var like = false;
+
+    //     $("#like-btn-" + postId).click(function() {
+    //         if (like === false) {
+    //             like = true;
+    //             console.log(like)
+    //             $(".fa-thumbs-up").css("color", "blue")
+
+    //         } else {
+    //             like = false
+    //             console.log(like)
+    //             $(".fa-thumbs-up").removeAttr('style');
+    //         }
+    //     })
+
+    // }
+
 
 }
 
@@ -181,4 +216,38 @@ view.showNewPosts = function(post) {
         showListPost.scrollTop -= showListPost.scrollHeight
     }
 
+}
+
+async function toggleLike(button, like) {
+    var like;
+    var posts = model.listPosts;
+    posts.map(post => {
+        if (button.id === post.id) {
+            like = post.like
+        }
+    })
+
+
+    let isLike = button.getElementsByClassName("thumbUp")
+    console.log(like)
+
+    if (button.getAttribute("data-isLike") == 'true') {
+        isLike[0].style.color = "black"
+        button.setAttribute("data-isLike", 'false')
+        await firebase.firestore().collection('posts').doc(button.id).update({
+            like: like
+        })
+        console.log(like)
+    } else {
+        button.setAttribute("data-isLike", 'true')
+        isLike[0].style.color = "blue"
+
+
+        await firebase.firestore().collection('posts').doc(button.id).update({
+            like: like + 1
+
+
+        })
+        console.log(like)
+    }
 }

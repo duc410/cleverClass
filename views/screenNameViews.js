@@ -294,8 +294,8 @@ view.showComponents = async function(screenName) {
                     if (input.files && input.files[0]) {
                         var reader = new FileReader();
 
-                        reader.onload = function(e) {
-                            $('#blah').attr('src', e.target.result).css("display", "block").width(80).height(50)
+                        reader.onload = async function(e) {
+                            await $('#blah').attr('src', e.target.result).css("display", "block").width(80).height(50)
 
                         }
 

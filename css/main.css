@@ -16,6 +16,8 @@ body:not(.modal-open) {
     height: 700px;
     position: relative;
     background-attachment: fixed;
+    width: 100%;
+    object-fit: cover;
 }
 
 header .container {
