@@ -88,15 +88,18 @@ view.showComponents = async function(screenName) {
                         // This gives you a Google Access Token. You can use it to access the Google API.
                         var token = result.credential.accessToken;
                         console.log(token)
-                        console.log(result)
+                        console.log(result.email)
                         $('body').removeClass('modal-open');
                         $('.modal-backdrop').remove();
+                        await controller.setupStatus();
+                        console.log(model.listUserStatus)
+
+
+
                         await view.showComponents('personal')
 
-                        var user = result.user;
-                        console.log(user)
-                        console.log("i 'm in'")
-                            // ...
+
+                        // ...
                     }).catch(function(error) {
                         // Handle Errors here.
                         var errorCode = error.code;
