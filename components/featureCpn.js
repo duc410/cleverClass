@@ -62,7 +62,14 @@ components.chats = `
    </div>
 
    <div class="loader" id="loader"></div>
+
+
+   <div id="show-new-post">
    
+
+
+</div>
+
    <div id="show-list-post">
    
 
