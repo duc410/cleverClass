@@ -69,12 +69,20 @@ view.showListPosts = async function() {
 
 <div class="comment-post mt-3 collapse" id="${idCollapse}">
 <hr/>
-<img class="avatar-user mt-1 mr-1" src="${photoCurrentUserCmt}" >
+<img class="avatar-user-cmt mt-1 mr-1" src="${photoCurrentUserCmt}" >
 <form class="form-group card form-add-comment">
   <input type="text"
     class="form-control form-add-comment-post" name="" id="" aria-describedby="helpId" placeholder="Write a comment...">
 </form>
+
 </div>
+
+
+<div class="sub-comment collapse" id="${idCollapse}">
+<img class="avatar-user-cmt mt-1 mr-1" src="${photo}" >
+<span><a href="#">${name}</a> <span>Tao khong biet dau nhe</span></span>
+</div>
+
 
 
 </div>
@@ -83,6 +91,7 @@ view.showListPosts = async function() {
             `
 
             }
+            $("#loader").css("display", "none")
             showListPost.innerHTML += html
 
         }
