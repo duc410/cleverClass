@@ -89,10 +89,11 @@ view.showComponents = async function(screenName) {
                         var token = result.credential.accessToken;
                         console.log(token)
                         console.log(result)
-                        view.showComponents('personal')
+                            // view.showComponents('personal')
 
                         var user = result.user;
                         console.log(user)
+                        console.log("i 'm in'")
                             // ...
                     }).catch(function(error) {
                         // Handle Errors here.
