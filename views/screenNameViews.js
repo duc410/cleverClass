@@ -89,7 +89,9 @@ view.showComponents = async function(screenName) {
                         var token = result.credential.accessToken;
                         console.log(token)
                         console.log(result)
-                            // view.showComponents('personal')
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
+                        // view.showComponents('personal')
 
                         var user = result.user;
                         console.log(user)
