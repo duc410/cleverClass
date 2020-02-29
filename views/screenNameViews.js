@@ -499,7 +499,7 @@ view.showComponents = async function(screenName) {
                     await firebase.firestore().collection('conversations').doc(currentId).update({
                         users: firebase.firestore.FieldValue.arrayRemove(currentEmail),
                     })
-                    location.reload();
+                    await location.reload();
 
 
 

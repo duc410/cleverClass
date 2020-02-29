@@ -1,4 +1,5 @@
 view.showListClassrooms = function() {
+    console.log("dfkdng")
     if (model.classrooms) {
         let classrooms = model.classrooms
         let classList = document.getElementById('classList')
@@ -48,7 +49,7 @@ view.showListClassroomsAsideLeft = function() {
 
 }
 view.showCurrentClassroom = function() {
-    
+
     if (model.currentClassroom) {
         let { decription, teacher, members, lessons } = model.currentClassroom
         let { courseName, courseTarget, courseTime } = decription
@@ -81,7 +82,7 @@ view.showCurrentClassroom = function() {
         document.getElementById('lessons').innerHTML = lessonsHTML
     }
 }
-view.loadEditInfoClassroomForm = function(editInfoForm){
+view.loadEditInfoClassroomForm = function(editInfoForm) {
     let decription = model.currentClassroom.decription
     editInfoForm.targetCourse.value = decription.courseTarget
     editInfoForm.numberLesson.value = decription.courseTime.numberOfLesson
