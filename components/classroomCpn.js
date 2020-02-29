@@ -28,7 +28,7 @@ components.classroom = `<div class="d-flex">
                 <i class="fas fa-user-plus"></i>
                 <span>Thêm thành viên</span>
             </span>
-            <input id="add-member-input"  class="add-input" placeholder="Nhập tên người dùng"></input>
+            <input id="add-member-input"  class="add-input" placeholder="Nhập tên người dùng" ></input>
         </div>
         <div>
             <span id="add-">
@@ -67,8 +67,18 @@ components.classroom = `<div class="d-flex">
         <h3>Thành viên</h3>
         <ul>
             <li id="teacher">Giáo viên: </li>
-            <li id="students">Học viên: người</li>
-        </ul>
+            <li id="students">Học viên: người </li>
+        </ul>    
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButtonMember" onclick="view.showCurrentClassroom()"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Các thành viên
+            </button>
+        <div class="dropdown-menu" id="dropdown-member" aria-labelledby="dropdownMenuButton">
+           
+        </div>
+        </div>
+        
+        
         <div id="time"></div>
     </div>
 

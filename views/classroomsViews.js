@@ -1,10 +1,14 @@
-view.showListClassrooms = function() {
+view.showListClassrooms = function () {
     if (model.classrooms) {
         let classrooms = model.classrooms
         let classList = document.getElementById('classList')
         let html = classList.innerHTML
         for (let classroom of classrooms) {
-            let { decription, teacher, id: classroomId } = classroom
+            let {
+                decription,
+                teacher,
+                id: classroomId
+            } = classroom
             let courseName = decription.courseName
             html += `<div id="${classroomId}" class="class-item">
             <div class="class-item-content">
@@ -18,7 +22,7 @@ view.showListClassrooms = function() {
         for (let classroom of classrooms) {
             let classroomId = classroom.id
             let classroomCard = document.getElementById(classroomId)
-            classroomCard.onclick = function() {
+            classroomCard.onclick = function () {
                 model.saveCurrentClassroom(classroom)
                 view.showComponents('classroom')
             }
@@ -26,7 +30,7 @@ view.showListClassrooms = function() {
 
     }
 }
-view.showListClassroomsAsideLeft = function() {
+view.showListClassroomsAsideLeft = function () {
     if (model.classrooms) {
         let html = ``
         for (let classroom of model.classrooms) {
@@ -39,7 +43,7 @@ view.showListClassroomsAsideLeft = function() {
         for (let classroom of model.classrooms) {
             let classroomId = classroom.id
             let classroomCard = document.getElementById(classroomId)
-            classroomCard.onclick = function() {
+            classroomCard.onclick = function () {
                 model.saveCurrentClassroom(classroom)
                 view.showCurrentClassroom()
             }
@@ -47,12 +51,25 @@ view.showListClassroomsAsideLeft = function() {
     }
 
 }
-view.showCurrentClassroom = function() {
-    console.log(model.currentClassroom)
-    if (model.currentClassroom) {
-        let { decription, teacher, members, lessons } = model.currentClassroom
-        let { courseName, courseTarget, courseTime } = decription
-        let { start: courseTimeStart, end: courseTimeEnd, numberOfLesson } = courseTime
+view.showCurrentClassroom = async function () {
+    console.log(model)
+    if (model.currentClassroom.members) {
+        let {
+            decription,
+            teacher,
+            members,
+            lessons
+        } = model.currentClassroom
+        let {
+            courseName,
+            courseTarget,
+            courseTime
+        } = decription
+        let {
+            start: courseTimeStart,
+            end: courseTimeEnd,
+            numberOfLesson
+        } = courseTime
         let numberOfStudent = members.length - 1
 
         //display decription
@@ -67,7 +84,7 @@ view.showCurrentClassroom = function() {
                 <li>Ngày kết thúc: ${courseTimeEnd}</li>
             </ul>
         `
-            //display lesson
+        //display lesson
         let lessonsHTML = ""
         let index = 1
         for (let lesson of lessons) {
@@ -79,5 +96,28 @@ view.showCurrentClassroom = function() {
             index++
         }
         document.getElementById('lessons').innerHTML = lessonsHTML
+    }
+
+    let dropDownMember = document.getElementById("dropdownMenuButtonMember")
+    let members = model.currentClassroom.members
+
+    dropDownMember.onclick = function () {
+        let userData = await firebase
+            .firestore()
+            .collection('users')
+            .get()
+
+        let userInfor= transformDocs(userData.docs)
+
+
+
+
+        let showMember = document.getElementById("dropdown-member")
+        showMember.innerHTML = ``
+        for (let i in members) {
+            let html = `<a class="dropdown-item" href="#">${members[i]}<img src="${userInfor[i]}" class="rounded-circle" alt="Cinque Terre"></a><br>`
+            showMember.innerHTML += html
+        }
+
     }
 }
