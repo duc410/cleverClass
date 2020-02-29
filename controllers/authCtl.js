@@ -46,7 +46,7 @@ controller.logIn = async function(logInInfo) {
             throw new Error('User must verify email!')
         }
         $('body').css('padding-right', '0px')
-        view.showComponents('personal')
+
     } catch (err) {
         view.setText('log-in-error', err.message)
     }

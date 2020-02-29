@@ -105,16 +105,14 @@ components.home = `<div>
                                 <div class="input-wrapper">
                                     <i class="fas fa-envelope"></i>
                                     <input type="email" class="email" name="email" placeholder="Email">
-                                    <div id="email-error" class="message-error"></div>
                                 </div>
-                                
+                                <div id="email-error" class="message-error"></div>
 
                                 <div class="input-wrapper">
                                     <i class="fas fa-lock"></i>
                                     <input type="password" class="password" name="password" placeholder="Password">
-                                    <div id="password-error" class="message-error"></div>
                                 </div>
-                             
+                                <div id="password-error" class="message-error"></div>
 
                                 <div id="log-in-error" class="message-error"></div>
 
